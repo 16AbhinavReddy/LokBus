@@ -5,7 +5,7 @@ import torch
 from transformers import (AutoTokenizer, AutoModelForCausalLM, BitsAndBytesConfig)
 
 
-model = "Qwen/Qwen2.5-3B-Instruct"
+model_name = "Qwen/Qwen2.5-3B-Instruct"
 total = 50
 batch = 5
 random.seed(42)
@@ -24,10 +24,10 @@ def check():
 
 
 def load_model():
-    print(f"\nmodel: {model}")
+    print(f"\nmodel: {model_name}")
     conf = BitsAndBytesConfig(load_in_4bit=True, bnb_4bit_quant_type="nf4", bnb_4bit_compute_dtype=torch.float16, bnb_4bit_use_double_quant=True)
-    tokenizer = AutoTokenizer.from_pretrained(model)
-    model = AutoModelForCausalLM.from_pretrained(model, quantization_config = conf, device_map = "auto", torch_dtype = torch.float16)
+    tokenizer = AutoTokenizer.from_pretrained(model_name)
+    model = AutoModelForCausalLM.from_pretrained(model_name, quantization_config = conf, device_map = "auto", torch_dtype = torch.float16)
     model.eval()
     print("\nModel loaded")
     return tokenizer, model
@@ -69,13 +69,13 @@ def generate_review(tokenizer, model, category, scenario):
 def main():
     #check()
     tokenizer, model = load_model()
-    cat = random.choice(cat)
-    scenes = random.choice(scenes[cat])
+    category = random.choice(cat)
+    scenario = random.choice(scenes[category])
 
-    print(f"\nCategory: {cat}")
-    print(f"\nScenario: {scenes}")
+    print(f"\nCategory: {category}")
+    print(f"\nScenario: {scenario}")
 
-    review = generate_review(tokenizer, model,cat,scenes)
+    review = generate_review(tokenizer, model,category,scenario)
     print("\nGenerated output:")
     print(review)
 
