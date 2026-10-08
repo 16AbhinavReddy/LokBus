@@ -4,27 +4,21 @@ from datetime import datetime, timedelta
 import torch
 from transformers import (AutoTokenizer, AutoModelForCausalLM, BitsAndBytesConfig)
 import re
+import pandas as pd
 
 
 model_name = "Qwen/Qwen2.5-3B-Instruct"
-total = 50
+total = 6000
 batch = 5
 random.seed(42)
 cat = ["Driving", "Disruptions", "Ticket Handling"]
-sentiment_counts = {"Driving": {"Positive": 8, "Negative": 6, "Neutral": 2}, "Disruptions": {"Positive": 7,"Negative": 9, "Neutral": 2}, "Ticket Handling": {"Positive": 8, "Negative": 8, "Neutral": 2}}
+sentiment_counts = {"Driving": {"Positive": 1000, "Negative": 800, "Neutral": 200}, "Disruptions": {"Positive": 700,"Negative": 1100, "Neutral": 200}, "Ticket Handling": {"Positive": 800, "Negative": 1000, "Neutral": 200}}
 scenarios = {"Driving": {"Positive": ["safe driving", "smooth driving", "following traffic signals", "careful overtaking", "smooth braking"], "Negative": ["rash driving", "overspeeding", "sudden braking", "dangerous overtaking", "sudden lane changes", "ignoring traffic signals"], "Neutral": ["normal driving", "average driving", "moderate speed"]},
 "Disruptions": {"Positive": ["on-time arrival", "normal travel time", "smooth journey", "minimal traffic delay"], "Negative": ["heavy traffic", "long travel time", "unexpected delay","road construction", "vehicle breakdown", "route diversion", "long waiting at stops"], "Neutral": ["moderate traffic", "minor delay", "average travel time"]},
 "Ticket Handling": {"Positive": ["ticket issued immediately", "correct fare charged", "correct change returned", "ticket provided without asking"],"Negative": ["fare collected but no ticket issued","same ticket reused for another passenger","conductor refusing to provide ticket","incorrect fare charged","change not returned", "cash collected without issuing ticket"], "Neutral": ["normal ticket issuing", "minor waiting for ticket", "normal fare collection"]}}
-
-def check():
-    if not torch.cuda.is_available():
-        print("\nGPU not found")
-    name = torch.cuda.get_device_name(0)
-    mem = (torch.cuda.get_device_properties(0).total_memory/ (1024 ** 3))
-    print(f"\nName: {name}")
-    print(f"Mem: {mem:.2f} GB")
-    print(f"cuda version: {torch.version.cuda}")
-    print()
+routes = ["Route 1", "Route 5", "Route 7", "Route 10", "Route 12", "Route 15", "Route 18", "Route 21", "Route 23", "Route 25"]
+rating_map = {"Positive": [4, 5], "Negative": [1, 2], "Neutral": [3]}
+severity_map = {"Positive": ["Low"], "Neutral": ["Low", "Medium"], "Negative": ["Low", "Medium", "High"]}
 
 
 def load_model():
@@ -133,23 +127,63 @@ def generate_dataset(tokenizer, model):
             idx = int(item["id"])
             if idx >= len(curr):
                 continue
-            review = item.get("review", "")
+            review = clean(item.get("review", ""))
             if not review:
                 continue
             config = curr[idx]
-            reviews.append({"category": config["category"], "scenario": config["scenario"], "sentiment": config["sentiment"], "timestamp": generate_timestamp(), "review": review })
+            sentiment = config["sentiment"]
+            timestamp = generate_timestamp()
+            reviews.append({"category": config["category"], "scenario": config["scenario"], "sentiment": config["sentiment"], "severity": random.choice(severity_map[sentiment]), "rating": random.choice(rating_map[sentiment]), "route": random.choice(routes), "timestamp": timestamp, "time_of_day": get_time(timestamp), "review": review })
         print(f"Reviews collected: {len(reviews)}")
         torch.cuda.empty_cache()
     return reviews
 
+def clean(text):
+    if not isinstance(text, str):
+        return ""
+    text = text.strip()
+    text = re.sub(r"\s+", " ", text)
+    return text
+def normalize(text):
+    text = text.lower()
+    text = re.sub(r"[^a-z0-9\s]", "", text)
+    text = re.sub(r"\s+", " ", text)
+    return text.strip()
+
+def get_time(timestamp):
+    hr = timestamp.hour
+    if hr >= 5 and hr < 8:
+        return "Early Morning"
+    elif hr >= 8 and hr < 12:
+        return "Morning"
+    elif hr >= 12 and hr < 17:
+        return "Afternoon"
+    elif hr >= 17 and hr < 21:
+        return "Evening"
+    else:
+        return "Night"
+
+def remove_duplicates(df):
+    prev = len(df)
+    df["normalized"] = (df["review"].apply(normalize))
+    df = df.drop_duplicates(subset=["normalized"])
+    df = df.drop(columns=["normalized"])
+    curr = len(df)
+    print("\nDuplicate removal:")
+    print(f"Before: {prev}")
+    print(f"After: {curr}")
+    print(f"Removed: {prev - curr}")
+    return df
 
 def main():
-    #check()
     tokenizer, model = load_model()
     reviews = generate_dataset(tokenizer, model)
-    print(reviews[1])
-    print("Done")
+    df = pd.DataFrame(reviews)
+    df = remove_duplicates(df)
+    df = df.sample(frac=1, random_state=42).reset_index(drop=True)
+    df.insert(0, "review_id", range(1, len(df) + 1))
+    df["timestamp"] = (pd.to_datetime(df["timestamp"]).dt.strftime("%Y-%m-%d %H:%M:%S"))
+    df.to_csv("bus_reviews.csv", index=False, encoding="utf-8")
 
 if __name__ == "__main__":
     main()
-
