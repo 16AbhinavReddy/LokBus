@@ -1,0 +1,12 @@
+{
+    "routeLiveInfo": {
+        "00fAGH7pDXCvd": "{\"lSId\":\"dloFQCdm\",\"_longitude\":72.839554,\"eta\":0,\"vNo\":\"8918\",\"bearing\":250,\"opId\":\"1909\",\"psId\":\"SHSBIbNX\",\"_isHalted\":false,\"_latitude\":19.054241,\"psTime\":1791454618000,\"tS\":1791454928000,\"sId\":\"dloFQCdm\"}",
+        "00fAGRPJpX7D4": "{\"lSId\":\"dloFQCdm\",\"_longitude\":72.83756,\"eta\":228,\"vNo\":\"8868\",\"bearing\":126,\"opId\":\"1909\",\"psId\":\"SHSBIbNX\",\"_isHalted\":false,\"_latitude\":19.054354,\"psTime\":1791454748000,\"tS\":1791454888000,\"sId\":\"dloFQCdm\"}"
+    },
+    "stopsEta": {
+        "ZWydPUjX": {
+            "00fAGH7pDXCvd": "{\"lSId\":\"dloFQCdm\",\"eta\":-1,\"isHalted\":false,\"vNo\":\"8918\",\"ag\":\"best\",\"dist\":0,\"dest\":\"Bandra Bus Station West\",\"rN\":\"A-211\",\"tS\":1791454918000}",
+            "00fAGRPJpX7D4": "{\"lSId\":\"dloFQCdm\",\"eta\":-1,\"isHalted\":false,\"vNo\":\"8868\",\"ag\":\"best\",\"dist\":0,\"dest\":\"Bandra Bus Station West\",\"rN\":\"A-211\",\"tS\":1791454888000}"
+        }
+    }
+}
