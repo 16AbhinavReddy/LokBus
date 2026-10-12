@@ -1,0 +1,836 @@
+[
+    {
+        "route_id": "ejpGajLj",
+        "route_name": "A-1",
+        "first_stop": "Chhatrapati Shivaji Maharaj Terminus",
+        "last_stop": "Santacruz Depot"
+    },
+    {
+        "route_id": "RNajznrw",
+        "route_name": "A-1",
+        "first_stop": "Santacruz Depot",
+        "last_stop": "Chhatrapati Shivaji Maharaj Terminus"
+    },
+    {
+        "route_id": "QWquekic",
+        "route_name": "A-21",
+        "first_stop": "Bandra East Bus Station",
+        "last_stop": "Bandra East Bus Station"
+    },
+    {
+        "route_id": "uMVQOWLQ",
+        "route_name": "A-21",
+        "first_stop": "Trombay",
+        "last_stop": "Dr Shyamaprasad Mukherji Chowk Or Museum"
+    },
+    {
+        "route_id": "YTlGDpCL",
+        "route_name": "A-21",
+        "first_stop": "Dr Shyamaprasad Mukherji Chowk",
+        "last_stop": "Trombay"
+    },
+    {
+        "route_id": "mZZRrkjt",
+        "route_name": "A-19",
+        "first_stop": "Shivaji Nagar Bus Station",
+        "last_stop": "Mantralaya"
+    },
+    {
+        "route_id": "JRqoMSDT",
+        "route_name": "A-19",
+        "first_stop": "Mantralaya",
+        "last_stop": "Shivaji Nagar Bus Station"
+    },
+    {
+        "route_id": "slLHPyTi",
+        "route_name": "A-318",
+        "first_stop": "Kurla Bus Station West",
+        "last_stop": "Santacruz Station East"
+    },
+    {
+        "route_id": "lWTHVqGz",
+        "route_name": "A-318",
+        "first_stop": "Santacruz Station East",
+        "last_stop": "Kurla Bus Station West"
+    },
+    {
+        "route_id": "bDfFLuCm",
+        "route_name": "A-481",
+        "first_stop": "Ghatkopar Bus Station",
+        "last_stop": "SRA Colony Vashi Naka"
+    },
+    {
+        "route_id": "qAfRBVad",
+        "route_name": "A-481",
+        "first_stop": "SRA Colony Vashi Naka",
+        "last_stop": "Ghatkopar Bus Station"
+    },
+    {
+        "route_id": "HKmfpHXf",
+        "route_name": "A-180",
+        "first_stop": "Malvani Depot Or Gaikwad Nagar",
+        "last_stop": "Chhatrapati Shivaji Maharaj International Airport"
+    },
+    {
+        "route_id": "ZpgLROrU",
+        "route_name": "A-180",
+        "first_stop": "Chhatrapati Shivaji Maharaj International Airport",
+        "last_stop": "Malvani Depot Or Gaikwad Nagar"
+    },
+    {
+        "route_id": "EShTWPcS",
+        "route_name": "A-183 BKC-2",
+        "first_stop": "Kurla Bus Station West",
+        "last_stop": "Kurla Bus Station West"
+    },
+    {
+        "route_id": "lNKcqnTf",
+        "route_name": "A-23",
+        "first_stop": "Bandra East Bus Station",
+        "last_stop": "Bandra East Bus Station"
+    },
+    {
+        "route_id": "DUIrvKHw",
+        "route_name": "A-22",
+        "first_stop": "Jijamata Udyan",
+        "last_stop": "Seepz Bus Station"
+    },
+    {
+        "route_id": "qiDCiKpD",
+        "route_name": "A-22",
+        "first_stop": "Seepz Bus Station",
+        "last_stop": "Jijamata Udyan"
+    },
+    {
+        "route_id": "sLbAFyrR",
+        "route_name": "A-62",
+        "first_stop": "Vasantrao Naik Chowk",
+        "last_stop": "Vidyavihar Bus Station"
+    },
+    {
+        "route_id": "yvDeyNjX",
+        "route_name": "A-62",
+        "first_stop": "Vidyavihar Bus Station",
+        "last_stop": "Vasantrao Naik Chowk"
+    },
+    {
+        "route_id": "vXCtNvPS",
+        "route_name": "A-82",
+        "first_stop": "Worli Depot",
+        "last_stop": "Mantralaya"
+    },
+    {
+        "route_id": "xCmCfvPZ",
+        "route_name": "A-82",
+        "first_stop": "Mantralaya",
+        "last_stop": "Worli Depot"
+    },
+    {
+        "route_id": "XjioLGTR",
+        "route_name": "A-42",
+        "first_stop": "Kamla Nehru Park",
+        "last_stop": "Ferry Wharf"
+    },
+    {
+        "route_id": "BTsInkTW",
+        "route_name": "A-42",
+        "first_stop": "Ferry Wharf",
+        "last_stop": "Kamla Nehru Park"
+    },
+    {
+        "route_id": "uqrWFGtK",
+        "route_name": "A-32",
+        "first_stop": "Goregaon Bus Station West",
+        "last_stop": "Goregaon Bus Station West"
+    },
+    {
+        "route_id": "GyXIfxSH",
+        "route_name": "A-26",
+        "first_stop": "Electric House Or Colaba Depot",
+        "last_stop": "Shivaji Nagar Depot"
+    },
+    {
+        "route_id": "GDOHiOMz",
+        "route_name": "A-26",
+        "first_stop": "Shivaji Nagar Depot",
+        "last_stop": "Electric House Or Colaba Depot"
+    },
+    {
+        "route_id": "OUmuTaiW",
+        "route_name": "A-25",
+        "first_stop": "Rani Laxmibai Chowk",
+        "last_stop": "Backbay Bus Depot"
+    },
+    {
+        "route_id": "xcIDZgKg",
+        "route_name": "A-25",
+        "first_stop": "Backbay Bus Depot",
+        "last_stop": "Rani Laxmibai Chowk"
+    },
+    {
+        "route_id": "VwcAVkgp",
+        "route_name": "2",
+        "first_stop": "Bandra Colony Bus Station",
+        "last_stop": "Electric House Or Colaba Depot"
+    },
+    {
+        "route_id": "jOOPOXjC",
+        "route_name": "2",
+        "first_stop": "Electric House Or Colaba Depot",
+        "last_stop": "Bandra Colony Bus Station"
+    },
+    {
+        "route_id": "IGXTjUBF",
+        "route_name": "A-3",
+        "first_stop": "Navy Nagar Colaba",
+        "last_stop": "Jijamata Udyan"
+    },
+    {
+        "route_id": "MpYXlzTH",
+        "route_name": "A-3",
+        "first_stop": "Jijamata Udyan",
+        "last_stop": "Navy Nagar Colaba"
+    },
+    {
+        "route_id": "TAGWaVHh",
+        "route_name": "A-35",
+        "first_stop": "Com P K Kurne Chowk",
+        "last_stop": "Seepz Bus Station"
+    },
+    {
+        "route_id": "JkaqooRU",
+        "route_name": "A-35",
+        "first_stop": "Seepz Bus Station",
+        "last_stop": "Comrade P K Kurne Chowk"
+    },
+    {
+        "route_id": "TGYeKzqt",
+        "route_name": "A-63",
+        "first_stop": "J Mehta Marg",
+        "last_stop": "Byculla Railway Station West"
+    },
+    {
+        "route_id": "RSMxkxdV",
+        "route_name": "A-63",
+        "first_stop": "Vasantrao Naik Chowk",
+        "last_stop": "Chunabhatti Bus Terminus"
+    },
+    {
+        "route_id": "rushCBZJ",
+        "route_name": "A-63",
+        "first_stop": "Chunabhatti Bus Terminus",
+        "last_stop": "Vasantrao Naik Chowk"
+    },
+    {
+        "route_id": "sGsDcoPb",
+        "route_name": "A-63",
+        "first_stop": "Byculla Railway Station West",
+        "last_stop": "J Mehta Marg"
+    },
+    {
+        "route_id": "LhRqxitt",
+        "route_name": "A-30",
+        "first_stop": "Pandit Paluskar Chowk",
+        "last_stop": "Vikhroli Depot"
+    },
+    {
+        "route_id": "vHAcpJIZ",
+        "route_name": "A-30",
+        "first_stop": "Vikhroli Depot",
+        "last_stop": "Pandit Paluskar Chowk"
+    },
+    {
+        "route_id": "CERnPhqv",
+        "route_name": "A-39",
+        "first_stop": "Veer Kotwal Udyan Plaza",
+        "last_stop": "Seepz Bus Station"
+    },
+    {
+        "route_id": "DPgEXZyW",
+        "route_name": "A-39",
+        "first_stop": "Seepz Bus Station",
+        "last_stop": "Veer Kotwal Udyan Plaza"
+    },
+    {
+        "route_id": "HOAFxsXh",
+        "route_name": "A-37",
+        "first_stop": "Kurla Bus Station West",
+        "last_stop": "J Mehta Marg"
+    },
+    {
+        "route_id": "MCQHKKGM",
+        "route_name": "A-37",
+        "first_stop": "J Mehta Marg",
+        "last_stop": "Kurla Bus Station West"
+    },
+    {
+        "route_id": "nNpflPAz",
+        "route_name": "A-273",
+        "first_stop": "Malad Station West",
+        "last_stop": "Malad Station West"
+    },
+    {
+        "route_id": "xGFpPeZu",
+        "route_name": "A-273",
+        "first_stop": "Malad Station West Or Sainath Marg Chowky",
+        "last_stop": "Malvani Depot Or Gaikwad Nagar"
+    },
+    {
+        "route_id": "mTPisNoq",
+        "route_name": "A-273",
+        "first_stop": "Malvani Depot Or Gaikwad Nagar",
+        "last_stop": "Malad Station West Or Sainath Marg Chowky"
+    },
+    {
+        "route_id": "IJOIXtSA",
+        "route_name": "A-4",
+        "first_stop": "Chhatrapati Shivaji Maharaj Terminus",
+        "last_stop": "Vesave Or Yari Road Bus Station"
+    },
+    {
+        "route_id": "FhPktmAe",
+        "route_name": "A-4",
+        "first_stop": "Goregaon Oshiwara Depot",
+        "last_stop": "Dr M Iqbal Chowk Or J J Hospital"
+    },
+    {
+        "route_id": "PUfObmyu",
+        "route_name": "A-4",
+        "first_stop": "Dr M Iqbal Chowk Or J J Hospital",
+        "last_stop": "Goregaon Oshiwara Depot"
+    },
+    {
+        "route_id": "FffvDAmg",
+        "route_name": "A-4",
+        "first_stop": "Vesave Or Yari Road Bus Station",
+        "last_stop": "Chhatrapati Shivaji Maharaj Terminus"
+    },
+    {
+        "route_id": "vcQmfIzA",
+        "route_name": "A-84",
+        "first_stop": "Dr Shyamaprasad Mukherji Chowk",
+        "last_stop": "Goregaon Oshiwara Depot"
+    },
+    {
+        "route_id": "pnEBEerv",
+        "route_name": "A-84",
+        "first_stop": "Goregaon Oshiwara Depot",
+        "last_stop": "Dr Shyamaprasad Mukherji Chowk"
+    },
+    {
+        "route_id": "nwyxYdCe",
+        "route_name": "A-45",
+        "first_stop": "Backbay Bus Depot",
+        "last_stop": "Mahul Village"
+    },
+    {
+        "route_id": "pDIcMcae",
+        "route_name": "A-45",
+        "first_stop": "Mahul Village",
+        "last_stop": "Backbay Bus Depot"
+    },
+    {
+        "route_id": "tfwLORkl",
+        "route_name": "A-49",
+        "first_stop": "Mahul Village",
+        "last_stop": "Mumbai Central Depot"
+    },
+    {
+        "route_id": "OKlLpygi",
+        "route_name": "A-49",
+        "first_stop": "Mumbai Central Depot",
+        "last_stop": "Mahul Village"
+    },
+    {
+        "route_id": "KGfkfBbw",
+        "route_name": "A-44",
+        "first_stop": "Worli Depot",
+        "last_stop": "Shrawan Yeshwante Chowk"
+    },
+    {
+        "route_id": "qLzQHAdV",
+        "route_name": "A-44",
+        "first_stop": "Shrawan Yeshwante Chowk",
+        "last_stop": "Worli Depot"
+    },
+    {
+        "route_id": "ofBvAfYD",
+        "route_name": "A-409",
+        "first_stop": "Mulund Depot",
+        "last_stop": "Sahar Cargo Complex"
+    },
+    {
+        "route_id": "OKPGUKsG",
+        "route_name": "A-409",
+        "first_stop": "Sahar Cargo Complex",
+        "last_stop": "Mulund Depot"
+    },
+    {
+        "route_id": "uDsuUHiF",
+        "route_name": "A-C-458",
+        "first_stop": "Borivali Station East",
+        "last_stop": "Deonar Depot"
+    },
+    {
+        "route_id": "vOdbgjIr",
+        "route_name": "A-C-458",
+        "first_stop": "Deonar Depot",
+        "last_stop": "Borivali Station East"
+    },
+    {
+        "route_id": "bdoSGHnS",
+        "route_name": "A-C-491",
+        "first_stop": "Rani Laxmibai Chowk Bus Station",
+        "last_stop": "Dadlani Park Thane West"
+    },
+    {
+        "route_id": "TKcaRNrh",
+        "route_name": "A-C-491",
+        "first_stop": "Dadlani Park Thane West",
+        "last_stop": "Rani Laxmibai Chowk Bus Station"
+    },
+    {
+        "route_id": "UtlloolA",
+        "route_name": "A-5",
+        "first_stop": "Kurla Bus Station East",
+        "last_stop": "Mantralaya"
+    },
+    {
+        "route_id": "sPFZyxYL",
+        "route_name": "A-5",
+        "first_stop": "Mantralaya",
+        "last_stop": "Kurla Bus Station East"
+    },
+    {
+        "route_id": "mgWnsCmd",
+        "route_name": "A-58",
+        "first_stop": "Wadala Truck Terminal",
+        "last_stop": "Kurla Bus Station East"
+    },
+    {
+        "route_id": "VUoHmQKo",
+        "route_name": "A-58",
+        "first_stop": "Kurla Bus Station East",
+        "last_stop": "Wadala Truck Terminal"
+    },
+    {
+        "route_id": "CPePufzt",
+        "route_name": "A-59",
+        "first_stop": "Kurla Bus Station East",
+        "last_stop": "Veer Kotwal Udyan Plaza"
+    },
+    {
+        "route_id": "xAMKMWMG",
+        "route_name": "A-59",
+        "first_stop": "Veer Kotwal Udyan Plaza",
+        "last_stop": "Kurla Bus Station East"
+    },
+    {
+        "route_id": "uQHzLHDQ",
+        "route_name": "A-85",
+        "first_stop": "Kurla Bus Station East",
+        "last_stop": "Pandit Paluskar Chowk"
+    },
+    {
+        "route_id": "zOYurhYq",
+        "route_name": "A-85",
+        "first_stop": "Pandit Paluskar Chowk",
+        "last_stop": "Kurla Bus Station East"
+    },
+    {
+        "route_id": "XIKhIbhC",
+        "route_name": "A-55",
+        "first_stop": "C B D Belapur Bus Station",
+        "last_stop": "Santacruz Depot"
+    },
+    {
+        "route_id": "JttzdhIw",
+        "route_name": "A-55",
+        "first_stop": "Santacruz Depot",
+        "last_stop": "C B D Belapur Bus Station"
+    },
+    {
+        "route_id": "iMGrxhPF",
+        "route_name": "A-56",
+        "first_stop": "Vesave Or Yari Road Bus Station",
+        "last_stop": "Worli Depot"
+    },
+    {
+        "route_id": "ZNXCLngg",
+        "route_name": "A-56",
+        "first_stop": "Worli Depot",
+        "last_stop": "Vesave Or Yari Road Bus Station"
+    },
+    {
+        "route_id": "vsolobwA",
+        "route_name": "A-6",
+        "first_stop": "Backbay Bus Depot",
+        "last_stop": "Mahul Village"
+    },
+    {
+        "route_id": "KVzfkpjL",
+        "route_name": "A-6",
+        "first_stop": "Backbay Bus Depot",
+        "last_stop": "Tata Power Centre Chembur"
+    },
+    {
+        "route_id": "SsPDhymL",
+        "route_name": "A-6",
+        "first_stop": "Mahul Village",
+        "last_stop": "Backbay Bus Depot"
+    },
+    {
+        "route_id": "HNemNIsQ",
+        "route_name": "A-6",
+        "first_stop": "Tata Power Centre Chembur",
+        "last_stop": "Backbay Bus Depot"
+    },
+    {
+        "route_id": "aJieJeOU",
+        "route_name": "A-76",
+        "first_stop": "Byculla Railway Station West",
+        "last_stop": "Byculla Railway Station West"
+    },
+    {
+        "route_id": "AAVKqQqu",
+        "route_name": "A-364",
+        "first_stop": "Mahul Village",
+        "last_stop": "Trombay"
+    },
+    {
+        "route_id": "yFhxQMMp",
+        "route_name": "A-364",
+        "first_stop": "Trombay",
+        "last_stop": "Mahul Village"
+    },
+    {
+        "route_id": "dcCrDfnN",
+        "route_name": "A-367",
+        "first_stop": "Gadkari Quarry",
+        "last_stop": "Kurla Bus Station East"
+    },
+    {
+        "route_id": "opgeXYSI",
+        "route_name": "A-367",
+        "first_stop": "Kurla Bus Station East",
+        "last_stop": "Gadkari Quarry"
+    },
+    {
+        "route_id": "YEuiagVY",
+        "route_name": "A-256",
+        "first_stop": "Juhu Beach",
+        "last_stop": "Malvani Depot Or Gaikwad Nagar"
+    },
+    {
+        "route_id": "KOnxKPjH",
+        "route_name": "A-256",
+        "first_stop": "Malvani Depot Or Gaikwad Nagar",
+        "last_stop": "Juhu Beach"
+    },
+    {
+        "route_id": "XvaVJaVh",
+        "route_name": "6",
+        "first_stop": "Tata Power Centre Chembur",
+        "last_stop": "Electric House Or Colaba Depot"
+    },
+    {
+        "route_id": "erIjxrur",
+        "route_name": "6",
+        "first_stop": "Electric House Or Colaba Depot",
+        "last_stop": "Tata Power Centre Chembur"
+    },
+    {
+        "route_id": "mkBmZbCf",
+        "route_name": "6",
+        "first_stop": "Electric House Or Colaba Depot",
+        "last_stop": "Mahul Village"
+    },
+    {
+        "route_id": "fuBngkvm",
+        "route_name": "6",
+        "first_stop": "Mahul Village",
+        "last_stop": "Electric House Or Colaba Depot"
+    },
+    {
+        "route_id": "HiUFEAxG",
+        "route_name": "A-7",
+        "first_stop": "Vikhroli Depot",
+        "last_stop": "Vijay Vallabh Chowk"
+    },
+    {
+        "route_id": "QkcnlJdu",
+        "route_name": "A-7",
+        "first_stop": "Vijay Vallabh Chowk",
+        "last_stop": "Vikhroli Depot"
+    },
+    {
+        "route_id": "zCBAtpQw",
+        "route_name": "A-78",
+        "first_stop": "Dr Shyamaprasad Mukherji Chowk",
+        "last_stop": "Byculla Railway Station West"
+    },
+    {
+        "route_id": "nZuTPCxo",
+        "route_name": "A-78",
+        "first_stop": "Byculla Railway Station West",
+        "last_stop": "Dr Shyamaprasad Mukherji Chowk"
+    },
+    {
+        "route_id": "BaSlIFvC",
+        "route_name": "A-77",
+        "first_stop": "Byculla Railway Station West",
+        "last_stop": "Byculla Railway Station West"
+    },
+    {
+        "route_id": "rtnDgPpx",
+        "route_name": "A-72",
+        "first_stop": "Dharavi Depot",
+        "last_stop": "Bhayandar Station East"
+    },
+    {
+        "route_id": "CDSVxBzx",
+        "route_name": "A-72",
+        "first_stop": "Bhayandar Station East",
+        "last_stop": "Dharavi Depot"
+    },
+    {
+        "route_id": "qUfOOmzT",
+        "route_name": "A-702",
+        "first_stop": "Magathane Depot",
+        "last_stop": "Ghobandar Village"
+    },
+    {
+        "route_id": "hNvdGrII",
+        "route_name": "A-702",
+        "first_stop": "Ghobandar Village",
+        "last_stop": "Magathane Depot"
+    },
+    {
+        "route_id": "BADkpAjV",
+        "route_name": "A-C 700",
+        "first_stop": "Magathane Depot",
+        "last_stop": "Thane Station East"
+    },
+    {
+        "route_id": "QnKBLjic",
+        "route_name": "A-C 700",
+        "first_stop": "Thane Station East",
+        "last_stop": "Magathane Depot"
+    },
+    {
+        "route_id": "ZKxGvybI",
+        "route_name": "A-8",
+        "first_stop": "Mantralaya",
+        "last_stop": "Shivaji Nagar Terminus"
+    },
+    {
+        "route_id": "TMTSXwrT",
+        "route_name": "A-8",
+        "first_stop": "Shivaji Nagar Terminus",
+        "last_stop": "Mantralaya"
+    },
+    {
+        "route_id": "asUjpcgw",
+        "route_name": "A-89",
+        "first_stop": "Mantralaya",
+        "last_stop": "Worli Depot"
+    },
+    {
+        "route_id": "SbZZrHpv",
+        "route_name": "A-89",
+        "first_stop": "Worli Depot",
+        "last_stop": "Mantralaya"
+    },
+    {
+        "route_id": "ObGFlerC",
+        "route_name": "A-484",
+        "first_stop": "Mhada Colony Bus Station Mulund East",
+        "last_stop": "Pawar Nagar Bus Station Thane"
+    },
+    {
+        "route_id": "WeVicTqS",
+        "route_name": "A-484",
+        "first_stop": "Pawar Nagar Bus Station Thane",
+        "last_stop": "Mhada Colony Bus Station Mulund East"
+    },
+    {
+        "route_id": "LGBKIsWd",
+        "route_name": "A-381",
+        "first_stop": "Ghatkopar Bus Station",
+        "last_stop": "Tata Power Centre Chembur"
+    },
+    {
+        "route_id": "FsaHkxtJ",
+        "route_name": "A-381",
+        "first_stop": "Tata Power Centre Chembur",
+        "last_stop": "Ghatkopar Bus Station"
+    },
+    {
+        "route_id": "XcYYLsiX",
+        "route_name": "A-92",
+        "first_stop": "Anushakti Nagar Bus Station",
+        "last_stop": "Vasantrao Naik Chowk"
+    },
+    {
+        "route_id": "NVZvQglQ",
+        "route_name": "A-92",
+        "first_stop": "Vasantrao Naik Chowk",
+        "last_stop": "Anushakti Nagar Bus Station"
+    },
+    {
+        "route_id": "XZnWfggT",
+        "route_name": "A-293",
+        "first_stop": "Shri Krishna Nagar Post Office",
+        "last_stop": "Jay Maharashtra Nagar"
+    },
+    {
+        "route_id": "ecABlLcB",
+        "route_name": "A-293",
+        "first_stop": "Jay Maharashtra Nagar",
+        "last_stop": "Shri Krishna Nagar Post Office"
+    },
+    {
+        "route_id": "tzOaPWlR",
+        "route_name": "A-490",
+        "first_stop": "Ghatkopar Depot Or Caseurina",
+        "last_stop": "Mantralaya"
+    },
+    {
+        "route_id": "wgdozgQb",
+        "route_name": "A-490",
+        "first_stop": "Dadlani Park Thane West",
+        "last_stop": "Mantralaya"
+    },
+    {
+        "route_id": "WzRoMpuA",
+        "route_name": "A-490",
+        "first_stop": "Mantralaya",
+        "last_stop": "Dadlani Park Thane West"
+    },
+    {
+        "route_id": "nWReuGRK",
+        "route_name": "A-490",
+        "first_stop": "Mantralaya",
+        "last_stop": "Ghatkopar Depot Or Caseurina"
+    },
+    {
+        "route_id": "DUIcxCsM",
+        "route_name": "A-809",
+        "first_stop": "Ahilyabai Holkar Chowk",
+        "last_stop": "Ahilyabai Holkar Chowk"
+    },
+    {
+        "route_id": "JANeeDot",
+        "route_name": "9",
+        "first_stop": "Colaba Bus Station",
+        "last_stop": "Antop Hill"
+    },
+    {
+        "route_id": "icXahjOp",
+        "route_name": "9",
+        "first_stop": "Antop Hill",
+        "last_stop": "Colaba Bus Station"
+    },
+    {
+        "route_id": "WvTRDlSj",
+        "route_name": "A-C-10",
+        "first_stop": "Electric House Or Colaba Depot",
+        "last_stop": "Pratiksha Nagar Depot"
+    },
+    {
+        "route_id": "IoxmYayh",
+        "route_name": "A-C-10",
+        "first_stop": "Pratiksha Nagar Depot",
+        "last_stop": "Electric House Or Colaba Depot"
+    },
+    {
+        "route_id": "OiWssBiO",
+        "route_name": "A-103",
+        "first_stop": "R C Church",
+        "last_stop": "Kamla Nehru Park"
+    },
+    {
+        "route_id": "iVwaswTU",
+        "route_name": "A-103",
+        "first_stop": "Kamla Nehru Park",
+        "last_stop": "R C Church"
+    },
+    {
+        "route_id": "wrAGUyxt",
+        "route_name": "A-106",
+        "first_stop": "R C Church",
+        "last_stop": "Kamla Nehru Park"
+    },
+    {
+        "route_id": "eIiaelqp",
+        "route_name": "A-106",
+        "first_stop": "Kamla Nehru Park",
+        "last_stop": "R C Church"
+    },
+    {
+        "route_id": "mHNQWiHM",
+        "route_name": "A-410",
+        "first_stop": "Kondivita Caves Or Mahakali Caves",
+        "last_stop": "Vikhroli Depot"
+    },
+    {
+        "route_id": "ggLNBmdB",
+        "route_name": "A-410",
+        "first_stop": "Vikhroli Depot",
+        "last_stop": "Kondivita Caves Or Mahakali Caves"
+    },
+    {
+        "route_id": "GZDJIHic",
+        "route_name": "A-102",
+        "first_stop": "Grant Road Station East",
+        "last_stop": "Grant Road Station East"
+    },
+    {
+        "route_id": "UCSXBvTe",
+        "route_name": "A-105",
+        "first_stop": "Kamla Nehru Park",
+        "last_stop": "Kamla Nehru Park"
+    },
+    {
+        "route_id": "HFYoziaE",
+        "route_name": "A-108",
+        "first_stop": "Kamla Nehru Park",
+        "last_stop": "Chhatrapati Shivaji Maharaj Terminus"
+    },
+    {
+        "route_id": "iCUxIVjB",
+        "route_name": "A-108",
+        "first_stop": "Chhatrapati Shivaji Maharaj Terminus",
+        "last_stop": "Kamla Nehru Park"
+    },
+    {
+        "route_id": "zhnRWSPu",
+        "route_name": "A-104",
+        "first_stop": "J Mehta Marg",
+        "last_stop": "J Mehta Marg"
+    },
+    {
+        "route_id": "jJYMTbFo",
+        "route_name": "A-104",
+        "first_stop": "Grant Road Station West",
+        "last_stop": "J Mehta Marg"
+    },
+    {
+        "route_id": "SngXSDve",
+        "route_name": "A-104",
+        "first_stop": "J Mehta Marg",
+        "last_stop": "Grant Road Station West"
+    },
+    {
+        "route_id": "zUavTEQW",
+        "route_name": "A-310",
+        "first_stop": "Kurla Bus Station West",
+        "last_stop": "Bandra Railway Terminus"
+    },
+    {
+        "route_id": "ZRPAaAAO",
+        "route_name": "A-310",
+        "first_stop": "Bandra Railway Terminus",
+        "last_stop": "Kurla Bus Station West"
+    }
+]

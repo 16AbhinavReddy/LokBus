@@ -4,7 +4,7 @@ routes=["A211","A273","A298","A332"]
 def print_locations(route):
     print("Route no: A-",route[1:])
     print("="*50)
-    with open(f"routes/live_response_{route}.json", "r", encoding="utf-8") as f:
+    with open(f"live_response_{route}.json", "r", encoding="utf-8") as f:
         data = json.load(f)
 
     for bus_id, bus_info in data["routeLiveInfo"].items():
