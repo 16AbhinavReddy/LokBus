@@ -1,0 +1,225 @@
+vehicle_number,route_id,route_name,first_stop,last_stop,source_timestamp
+1016W,QkcnlJdu,A-7,Vijay Vallabh Chowk,Vikhroli Depot,1780688251000
+10442,ZRPAaAAO,A-310,Bandra Railway Terminus,Kurla Bus Station West,1791707534000
+4001,uqrWFGtK,A-32,Goregaon Bus Station West,Goregaon Bus Station West,1791708518000
+4011,uqrWFGtK,A-32,Goregaon Bus Station West,Goregaon Bus Station West,1791708519000
+4025,vcQmfIzA,A-84,Dr Shyamaprasad Mukherji Chowk,Goregaon Oshiwara Depot,1791708780000
+4031,pnEBEerv,A-84,Goregaon Oshiwara Depot,Dr Shyamaprasad Mukherji Chowk,1791708794000
+4041,pnEBEerv,A-84,Goregaon Oshiwara Depot,Dr Shyamaprasad Mukherji Chowk,1791708799000
+4045,uqrWFGtK,A-32,Goregaon Bus Station West,Goregaon Bus Station West,1791708515000
+4047,pnEBEerv,A-84,Goregaon Oshiwara Depot,Dr Shyamaprasad Mukherji Chowk,1791708797000
+4056,ZNXCLngg,A-56,Worli Depot,Vesave Or Yari Road Bus Station,1780688219000
+4058,IoxmYayh,A-C-10,Pratiksha Nagar Depot,Electric House Or Colaba Depot,1791709262000
+4067,CPePufzt,A-59,Kurla Bus Station East,Veer Kotwal Udyan Plaza,1791708893000
+4075,IoxmYayh,A-C-10,Pratiksha Nagar Depot,Electric House Or Colaba Depot,1791709261000
+4083,WvTRDlSj,A-C-10,Electric House Or Colaba Depot,Pratiksha Nagar Depot,1791709259000
+4086,xAMKMWMG,A-59,Veer Kotwal Udyan Plaza,Kurla Bus Station East,1791708904000
+4087,CPePufzt,A-59,Kurla Bus Station East,Veer Kotwal Udyan Plaza,1791708900000
+4088,WvTRDlSj,A-C-10,Electric House Or Colaba Depot,Pratiksha Nagar Depot,1791709225000
+4090,WvTRDlSj,A-C-10,Electric House Or Colaba Depot,Pratiksha Nagar Depot,1791709175000
+4094,uqrWFGtK,A-32,Goregaon Bus Station West,Goregaon Bus Station West,1791708518000
+4101,vcQmfIzA,A-84,Dr Shyamaprasad Mukherji Chowk,Goregaon Oshiwara Depot,1791708821000
+4111,uqrWFGtK,A-32,Goregaon Bus Station West,Goregaon Bus Station West,1791708520000
+4154,iMGrxhPF,A-56,Vesave Or Yari Road Bus Station,Worli Depot,1791708970000
+4155,ZNXCLngg,A-56,Worli Depot,Vesave Or Yari Road Bus Station,1791708970000
+4158,ZNXCLngg,A-56,Worli Depot,Vesave Or Yari Road Bus Station,1791708975000
+6238,eIiaelqp,A-106,Kamla Nehru Park,R C Church,1791709295000
+6239,iVwaswTU,A-103,Kamla Nehru Park,R C Church,1791709283000
+6246,MpYXlzTH,A-3,Jijamata Udyan,Navy Nagar Colaba,1791708545000
+6258,pDIcMcae,A-45,Mahul Village,Backbay Bus Depot,1791708845000
+6262,eIiaelqp,A-106,Kamla Nehru Park,R C Church,1791709289000
+6283,nwyxYdCe,A-45,Backbay Bus Depot,Mahul Village,1791708828000
+6293,TMTSXwrT,A-8,Shivaji Nagar Terminus,Mantralaya,1791709149000
+6294,ZKxGvybI,A-8,Mantralaya,Shivaji Nagar Terminus,1791708335000
+6303,ZKxGvybI,A-8,Mantralaya,Shivaji Nagar Terminus,1791709141000
+6312,HKmfpHXf,A-180,Malvani Depot Or Gaikwad Nagar,Chhatrapati Shivaji Maharaj International Airport,1791708500000
+6350,OiWssBiO,A-103,R C Church,Kamla Nehru Park,1791709275000
+6355,iVwaswTU,A-103,Kamla Nehru Park,R C Church,1791707118000
+6363,OUmuTaiW,A-25,Rani Laxmibai Chowk,Backbay Bus Depot,1780688255000
+6367,YEuiagVY,A-256,Juhu Beach,Malvani Depot Or Gaikwad Nagar,1791709036000
+6376,YEuiagVY,A-256,Juhu Beach,Malvani Depot Or Gaikwad Nagar,1780688259000
+6379,YEuiagVY,A-256,Juhu Beach,Malvani Depot Or Gaikwad Nagar,1791709043000
+6403,ZpgLROrU,A-180,Chhatrapati Shivaji Maharaj International Airport,Malvani Depot Or Gaikwad Nagar,1791708510000
+6407,YEuiagVY,A-256,Juhu Beach,Malvani Depot Or Gaikwad Nagar,1791709044000
+6409,YEuiagVY,A-256,Juhu Beach,Malvani Depot Or Gaikwad Nagar,1780688260000
+6411,KOnxKPjH,A-256,Malvani Depot Or Gaikwad Nagar,Juhu Beach,1791709044000
+6420,YEuiagVY,A-256,Juhu Beach,Malvani Depot Or Gaikwad Nagar,1791709043000
+6435,KGfkfBbw,A-44,Worli Depot,Shrawan Yeshwante Chowk,1791708858000
+6437,qLzQHAdV,A-44,Shrawan Yeshwante Chowk,Worli Depot,1791708871000
+6439,pDIcMcae,A-45,Mahul Village,Backbay Bus Depot,1791708843000
+6526,erIjxrur,6,Electric House Or Colaba Depot,Tata Power Centre Chembur,1791709050000
+6550,XvaVJaVh,6,Tata Power Centre Chembur,Electric House Or Colaba Depot,1791709055000
+6551,XvaVJaVh,6,Tata Power Centre Chembur,Electric House Or Colaba Depot,1791709051000
+6553,CERnPhqv,A-39,Veer Kotwal Udyan Plaza,Seepz Bus Station,1780688042000
+6555,OUmuTaiW,A-25,Rani Laxmibai Chowk,Backbay Bus Depot,1780688250000
+6555,XvaVJaVh,6,Tata Power Centre Chembur,Electric House Or Colaba Depot,1791709057000
+6591,uqrWFGtK,A-32,Goregaon Bus Station West,Goregaon Bus Station West,1780688261000
+6683,XvaVJaVh,6,Tata Power Centre Chembur,Electric House Or Colaba Depot,1791709052000
+6691,MpYXlzTH,A-3,Jijamata Udyan,Navy Nagar Colaba,1791708598000
+6696,OUmuTaiW,A-25,Rani Laxmibai Chowk,Backbay Bus Depot,1791708567000
+6701,IGXTjUBF,A-3,Navy Nagar Colaba,Jijamata Udyan,1791708539000
+6705,IGXTjUBF,A-3,Navy Nagar Colaba,Jijamata Udyan,1791708590000
+6712,IGXTjUBF,A-3,Navy Nagar Colaba,Jijamata Udyan,1791708591000
+6714,OUmuTaiW,A-25,Rani Laxmibai Chowk,Backbay Bus Depot,1791708557000
+6717,IGXTjUBF,A-3,Navy Nagar Colaba,Jijamata Udyan,1791708593000
+6733,mZZRrkjt,A-19,Shivaji Nagar Bus Station,Mantralaya,1791708473000
+6737,JRqoMSDT,A-19,Mantralaya,Shivaji Nagar Bus Station,1791708477000
+6747,JRqoMSDT,A-19,Mantralaya,Shivaji Nagar Bus Station,1791708481000
+6748,JRqoMSDT,A-19,Mantralaya,Shivaji Nagar Bus Station,1791708477000
+6749,mZZRrkjt,A-19,Shivaji Nagar Bus Station,Mantralaya,1791705168000
+6770,ZKxGvybI,A-8,Mantralaya,Shivaji Nagar Terminus,1791709142000
+6791,JRqoMSDT,A-19,Mantralaya,Shivaji Nagar Bus Station,1791708476000
+6794,mZZRrkjt,A-19,Shivaji Nagar Bus Station,Mantralaya,1791708470000
+6802,xCmCfvPZ,A-82,Mantralaya,Worli Depot,1791708540000
+6826,mZZRrkjt,A-19,Shivaji Nagar Bus Station,Mantralaya,1791708474000
+6832,xCmCfvPZ,A-82,Mantralaya,Worli Depot,1791708540000
+6837,vXCtNvPS,A-82,Worli Depot,Mantralaya,1791708538000
+6944,ObGFlerC,A-484,Mhada Colony Bus Station Mulund East,Pawar Nagar Bus Station Thane,1791709169000
+6950,FsaHkxtJ,A-381,Tata Power Centre Chembur,Ghatkopar Bus Station,1791709189000
+6966,FsaHkxtJ,A-381,Tata Power Centre Chembur,Ghatkopar Bus Station,1791709190000
+6971,bDfFLuCm,A-481,Ghatkopar Bus Station,SRA Colony Vashi Naka,1791708495000
+6973,FsaHkxtJ,A-381,Tata Power Centre Chembur,Ghatkopar Bus Station,1791709190000
+6986,qAfRBVad,A-481,SRA Colony Vashi Naka,Ghatkopar Bus Station,1791706602000
+7006,FsaHkxtJ,A-381,Tata Power Centre Chembur,Ghatkopar Bus Station,1791709189000
+7008,FsaHkxtJ,A-381,Tata Power Centre Chembur,Ghatkopar Bus Station,1791709185000
+7032,FsaHkxtJ,A-381,Tata Power Centre Chembur,Ghatkopar Bus Station,1780688249000
+7042,FsaHkxtJ,A-381,Tata Power Centre Chembur,Ghatkopar Bus Station,1791709151000
+7053,LGBKIsWd,A-381,Ghatkopar Bus Station,Tata Power Centre Chembur,1791709183000
+7103,TGYeKzqt,A-63,J Mehta Marg,Byculla Railway Station West,1791708608000
+7111,sGsDcoPb,A-63,Byculla Railway Station West,J Mehta Marg,1791706516000
+7112,TGYeKzqt,A-63,J Mehta Marg,Byculla Railway Station West,1791705897000
+7121,BaSlIFvC,A-77,Byculla Railway Station West,Byculla Railway Station West,1791709101000
+7123,aJieJeOU,A-76,Byculla Railway Station West,Byculla Railway Station West,1791709005000
+7136,BaSlIFvC,A-77,Byculla Railway Station West,Byculla Railway Station West,1791709099000
+7139,zhnRWSPu,A-104,J Mehta Marg,J Mehta Marg,1791709330000
+7140,BaSlIFvC,A-77,Byculla Railway Station West,Byculla Railway Station West,1791709104000
+7142,jJYMTbFo,A-104,Grant Road Station West,J Mehta Marg,1791709340000
+7151,TGYeKzqt,A-63,J Mehta Marg,Byculla Railway Station West,1791708603000
+7151,zhnRWSPu,A-104,J Mehta Marg,J Mehta Marg,1791709331000
+7155,TGYeKzqt,A-63,J Mehta Marg,Byculla Railway Station West,1791702284000
+7157,TGYeKzqt,A-63,J Mehta Marg,Byculla Railway Station West,1791708611000
+7176,sGsDcoPb,A-63,Byculla Railway Station West,J Mehta Marg,1791707859000
+7211,ofBvAfYD,A-409,Mulund Depot,Sahar Cargo Complex,1791708870000
+7212,OKPGUKsG,A-409,Sahar Cargo Complex,Mulund Depot,1791708885000
+7237,uQHzLHDQ,A-85,Kurla Bus Station East,Pandit Paluskar Chowk,1791708952000
+7246,sPFZyxYL,A-5,Mantralaya,Kurla Bus Station East,1791708920000
+7257,uQHzLHDQ,A-85,Kurla Bus Station East,Pandit Paluskar Chowk,1791708944000
+7262,UtlloolA,A-5,Kurla Bus Station East,Mantralaya,1791708913000
+7273,zOYurhYq,A-85,Pandit Paluskar Chowk,Kurla Bus Station East,1791705464000
+7275,sPFZyxYL,A-5,Mantralaya,Kurla Bus Station East,1791708891000
+7289,CPePufzt,A-59,Kurla Bus Station East,Veer Kotwal Udyan Plaza,1780688254000
+7306,dcCrDfnN,A-367,Gadkari Quarry,Kurla Bus Station East,1791708938000
+7318,OKPGUKsG,A-409,Sahar Cargo Complex,Mulund Depot,1780687962000
+7324,WeVicTqS,A-484,Pawar Nagar Bus Station Thane,Mhada Colony Bus Station Mulund East,1791709180000
+7332,OKPGUKsG,A-409,Sahar Cargo Complex,Mulund Depot,1791708883000
+7334,OKPGUKsG,A-409,Sahar Cargo Complex,Mulund Depot,1791705932000
+7347,OKPGUKsG,A-409,Sahar Cargo Complex,Mulund Depot,1791708882000
+7353,WeVicTqS,A-484,Pawar Nagar Bus Station Thane,Mhada Colony Bus Station Mulund East,1791709177000
+7365,ofBvAfYD,A-409,Mulund Depot,Sahar Cargo Complex,1791708876000
+7384,ofBvAfYD,A-409,Mulund Depot,Sahar Cargo Complex,1791708854000
+753,AAVKqQqu,A-364,Mahul Village,Trombay,1791709001000
+754,uMVQOWLQ,A-21,Trombay,Dr Shyamaprasad Mukherji Chowk Or Museum,1791708460000
+755,AAVKqQqu,A-364,Mahul Village,Trombay,1791709013000
+756,yFhxQMMp,A-364,Trombay,Mahul Village,1791709021000
+757,AAVKqQqu,A-364,Mahul Village,Trombay,1791709007000
+760,uDsuUHiF,A-C-458,Borivali Station East,Deonar Depot,1791708878000
+762,NVZvQglQ,A-92,Vasantrao Naik Chowk,Anushakti Nagar Bus Station,1791709201000
+7627,jOOPOXjC,2,Electric House Or Colaba Depot,Bandra Colony Bus Station,1791708112000
+764,NVZvQglQ,A-92,Vasantrao Naik Chowk,Anushakti Nagar Bus Station,1791709187000
+7646,JANeeDot,9,Colaba Bus Station,Antop Hill,1791709250000
+765,uDsuUHiF,A-C-458,Borivali Station East,Deonar Depot,1791708884000
+766,NVZvQglQ,A-92,Vasantrao Naik Chowk,Anushakti Nagar Bus Station,1791709193000
+767,XcYYLsiX,A-92,Anushakti Nagar Bus Station,Vasantrao Naik Chowk,1791709181000
+773,uDsuUHiF,A-C-458,Borivali Station East,Deonar Depot,1791708883000
+775,YTlGDpCL,A-21,Dr Shyamaprasad Mukherji Chowk,Trombay,1791708462000
+776,YTlGDpCL,A-21,Dr Shyamaprasad Mukherji Chowk,Trombay,1791707079000
+777,vOdbgjIr,A-C-458,Deonar Depot,Borivali Station East,1791708891000
+779,uMVQOWLQ,A-21,Trombay,Dr Shyamaprasad Mukherji Chowk Or Museum,1791708455000
+780,YTlGDpCL,A-21,Dr Shyamaprasad Mukherji Chowk,Trombay,1791708415000
+782,YTlGDpCL,A-21,Dr Shyamaprasad Mukherji Chowk,Trombay,1791708464000
+783,yFhxQMMp,A-364,Trombay,Mahul Village,1791709017000
+787,uMVQOWLQ,A-21,Trombay,Dr Shyamaprasad Mukherji Chowk Or Museum,1791708460000
+789,XcYYLsiX,A-92,Anushakti Nagar Bus Station,Vasantrao Naik Chowk,1791709189000
+794,uDsuUHiF,A-C-458,Borivali Station East,Deonar Depot,1791708870000
+7948,VwcAVkgp,2,Bandra Colony Bus Station,Electric House Or Colaba Depot,1791708545000
+796,XcYYLsiX,A-92,Anushakti Nagar Bus Station,Vasantrao Naik Chowk,1791709193000
+798,uDsuUHiF,A-C-458,Borivali Station East,Deonar Depot,1791708871000
+801,uDsuUHiF,A-C-458,Borivali Station East,Deonar Depot,1791708881000
+8011,VwcAVkgp,2,Bandra Colony Bus Station,Electric House Or Colaba Depot,1791708575000
+802,uDsuUHiF,A-C-458,Borivali Station East,Deonar Depot,1791708887000
+803,vOdbgjIr,A-C-458,Deonar Depot,Borivali Station East,1791708890000
+806,uMVQOWLQ,A-21,Trombay,Dr Shyamaprasad Mukherji Chowk Or Museum,1791708302000
+808,uMVQOWLQ,A-21,Trombay,Dr Shyamaprasad Mukherji Chowk Or Museum,1791708453000
+809,uDsuUHiF,A-C-458,Borivali Station East,Deonar Depot,1791708888000
+810,vOdbgjIr,A-C-458,Deonar Depot,Borivali Station East,1791708870000
+815,XcYYLsiX,A-92,Anushakti Nagar Bus Station,Vasantrao Naik Chowk,1791709175000
+817,vOdbgjIr,A-C-458,Deonar Depot,Borivali Station East,1791708897000
+830,zOYurhYq,A-85,Pandit Paluskar Chowk,Kurla Bus Station East,1791708953000
+8302,rtnDgPpx,A-72,Dharavi Depot,Bhayandar Station East,1791708936000
+8309,bdoSGHnS,A-C-491,Rani Laxmibai Chowk Bus Station,Dadlani Park Thane West,1791708689000
+8315,CDSVxBzx,A-72,Bhayandar Station East,Dharavi Depot,1791708953000
+832,dcCrDfnN,A-367,Gadkari Quarry,Kurla Bus Station East,1791709032000
+8322,rushCBZJ,A-63,Chunabhatti Bus Terminus,Vasantrao Naik Chowk,1791708614000
+8323,tfwLORkl,A-49,Mahul Village,Mumbai Central Depot,1791707773000
+8332,OKlLpygi,A-49,Mumbai Central Depot,Mahul Village,1791708544000
+8348,OKlLpygi,A-49,Mumbai Central Depot,Mahul Village,1791708588000
+836,VUoHmQKo,A-58,Kurla Bus Station East,Wadala Truck Terminal,1791708935000
+837,UtlloolA,A-5,Kurla Bus Station East,Mantralaya,1791708912000
+8371,rushCBZJ,A-63,Chunabhatti Bus Terminus,Vasantrao Naik Chowk,1780688256000
+8372,TGYeKzqt,A-63,J Mehta Marg,Byculla Railway Station West,1791708533000
+8374,sGsDcoPb,A-63,Byculla Railway Station West,J Mehta Marg,1791708617000
+8378,TGYeKzqt,A-63,J Mehta Marg,Byculla Railway Station West,1791708271000
+8383,tfwLORkl,A-49,Mahul Village,Mumbai Central Depot,1791708728000
+8392,UCSXBvTe,A-105,Kamla Nehru Park,Kamla Nehru Park,1791709313000
+8398,BTsInkTW,A-42,Ferry Wharf,Kamla Nehru Park,1791708545000
+8402,TGYeKzqt,A-63,J Mehta Marg,Byculla Railway Station West,1791708583000
+8461,XjioLGTR,A-42,Kamla Nehru Park,Ferry Wharf,1791708534000
+8462,BTsInkTW,A-42,Ferry Wharf,Kamla Nehru Park,1791708497000
+8476,TKcaRNrh,A-C-491,Dadlani Park Thane West,Rani Laxmibai Chowk Bus Station,1791702388000
+8501,TAGWaVHh,A-35,Com P K Kurne Chowk,Seepz Bus Station,1791708597000
+8502,HFYoziaE,A-108,Kamla Nehru Park,Chhatrapati Shivaji Maharaj Terminus,1791709113000
+8505,rtnDgPpx,A-72,Dharavi Depot,Bhayandar Station East,1791709005000
+8506,sGsDcoPb,A-63,Byculla Railway Station West,J Mehta Marg,1791708619000
+8512,TKcaRNrh,A-C-491,Dadlani Park Thane West,Rani Laxmibai Chowk Bus Station,1791708834000
+8515,sLbAFyrR,A-62,Vasantrao Naik Chowk,Vidyavihar Bus Station,1791708485000
+8533,yvDeyNjX,A-62,Vidyavihar Bus Station,Vasantrao Naik Chowk,1791708513000
+8562,QnKBLjic,A-C 700,Thane Station East,Magathane Depot,1780688254000
+8577,BADkpAjV,A-C 700,Magathane Depot,Thane Station East,1791709105000
+8578,hNvdGrII,A-702,Ghobandar Village,Magathane Depot,1791709117000
+8589,QnKBLjic,A-C 700,Thane Station East,Magathane Depot,1780688161000
+8594,QnKBLjic,A-C 700,Thane Station East,Magathane Depot,1791709119000
+8600,BADkpAjV,A-C 700,Magathane Depot,Thane Station East,1791708883000
+8628,BADkpAjV,A-C 700,Magathane Depot,Thane Station East,1780688249000
+863,xAMKMWMG,A-59,Veer Kotwal Udyan Plaza,Kurla Bus Station East,1791708935000
+8639,TKcaRNrh,A-C-491,Dadlani Park Thane West,Rani Laxmibai Chowk Bus Station,1791708869000
+8652,QkcnlJdu,A-7,Vijay Vallabh Chowk,Vikhroli Depot,1791709033000
+8657,vHAcpJIZ,A-30,Vikhroli Depot,Pandit Paluskar Chowk,1791708581000
+865W,sPFZyxYL,A-5,Mantralaya,Kurla Bus Station East,1791708919000
+8660,ggLNBmdB,A-410,Vikhroli Depot,Kondivita Caves Or Mahakali Caves,1791709173000
+8664,vHAcpJIZ,A-30,Vikhroli Depot,Pandit Paluskar Chowk,1791708165000
+8666,LhRqxitt,A-30,Pandit Paluskar Chowk,Vikhroli Depot,1791708496000
+8667,HiUFEAxG,A-7,Vikhroli Depot,Vijay Vallabh Chowk,1791709004000
+8668,QkcnlJdu,A-7,Vijay Vallabh Chowk,Vikhroli Depot,1791708791000
+8670,mHNQWiHM,A-410,Kondivita Caves Or Mahakali Caves,Vikhroli Depot,1791709291000
+8672,HiUFEAxG,A-7,Vikhroli Depot,Vijay Vallabh Chowk,1791709029000
+8673,LhRqxitt,A-30,Pandit Paluskar Chowk,Vikhroli Depot,1791705569000
+8677,mHNQWiHM,A-410,Kondivita Caves Or Mahakali Caves,Vikhroli Depot,1791709293000
+8681,QkcnlJdu,A-7,Vijay Vallabh Chowk,Vikhroli Depot,1791708899000
+8696,LhRqxitt,A-30,Pandit Paluskar Chowk,Vikhroli Depot,1791707737000
+8697,mHNQWiHM,A-410,Kondivita Caves Or Mahakali Caves,Vikhroli Depot,1791709074000
+8701,mHNQWiHM,A-410,Kondivita Caves Or Mahakali Caves,Vikhroli Depot,1791709272000
+8814,GyXIfxSH,A-26,Electric House Or Colaba Depot,Shivaji Nagar Depot,1791708549000
+8825,GDOHiOMz,A-26,Shivaji Nagar Depot,Electric House Or Colaba Depot,1791708568000
+8827,GyXIfxSH,A-26,Electric House Or Colaba Depot,Shivaji Nagar Depot,1791708483000
+8850,GyXIfxSH,A-26,Electric House Or Colaba Depot,Shivaji Nagar Depot,1791708230000
+8866,RNajznrw,A-1,Santacruz Depot,Chhatrapati Shivaji Maharaj Terminus,1791708347000
+8880,JkaqooRU,A-35,Seepz Bus Station,Comrade P K Kurne Chowk,1791708246000
+8896,qiDCiKpD,A-22,Seepz Bus Station,Jijamata Udyan,1791708437000
+8908,RNajznrw,A-1,Santacruz Depot,Chhatrapati Shivaji Maharaj Terminus,1791708387000
+8933,TAGWaVHh,A-35,Com P K Kurne Chowk,Seepz Bus Station,1791708277000
+8936,CERnPhqv,A-39,Veer Kotwal Udyan Plaza,Seepz Bus Station,1780688027000
+8936,qiDCiKpD,A-22,Seepz Bus Station,Jijamata Udyan,1791708128000
+8962,RNajznrw,A-1,Santacruz Depot,Chhatrapati Shivaji Maharaj Terminus,1791708401000
+8969,DUIrvKHw,A-22,Jijamata Udyan,Seepz Bus Station,1791708514000
+8975,GDOHiOMz,A-26,Shivaji Nagar Depot,Electric House Or Colaba Depot,1791708560000
+8982,GDOHiOMz,A-26,Shivaji Nagar Depot,Electric House Or Colaba Depot,1791708540000
