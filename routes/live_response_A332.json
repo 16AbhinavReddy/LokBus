@@ -1,0 +1,16 @@
+{
+    "routeLiveInfo": {
+        "00RO8Z9DnKPJp": "{\"lSId\":\"uHYCbrep\",\"_longitude\":72.87881,\"eta\":0,\"vNo\":\"8521\",\"bearing\":157,\"opId\":\"1909\",\"psId\":\"QilRQbDk\",\"_isHalted\":false,\"_latitude\":19.067558,\"psTime\":1780687942000,\"tS\":1780688242000,\"sId\":\"uHYCbrep\"}",
+        "00exzox4DaUci": "{\"lSId\":\"uHYCbrep\",\"_longitude\":72.882904,\"eta\":14,\"vNo\":\"8521\",\"bearing\":96,\"opId\":\"1909\",\"psId\":\"qsiyUStI\",\"_isHalted\":false,\"_latitude\":19.107769,\"psTime\":1791300695000,\"tS\":1791300845000,\"sId\":\"DXxQmBto\"}",
+        "00exuECrNeBja": "{\"lSId\":\"uHYCbrep\",\"_longitude\":72.88292,\"eta\":42,\"vNo\":\"10425\",\"bearing\":232,\"opId\":\"1909\",\"psId\":\"onOtQCmu\",\"_isHalted\":false,\"_latitude\":19.083696,\"psTime\":1791300811000,\"tS\":1791300871000,\"sId\":\"gtZxlHfS\"}",
+        "00extGUWi0wNC": "{\"lSId\":\"uHYCbrep\",\"_longitude\":72.87971,\"eta\":179,\"vNo\":\"8515\",\"bearing\":141,\"opId\":\"1909\",\"psId\":\"etPaioaT\",\"_isHalted\":false,\"_latitude\":19.074879,\"psTime\":1791300349000,\"tS\":1791300389000,\"sId\":\"vrVButjl\"}"
+    },
+    "stopsEta": {
+        "RKFRZJQr": {
+            "00RO8Z9DnKPJp": "{\"lSId\":\"uHYCbrep\",\"eta\":-1,\"isHalted\":false,\"vNo\":\"8521\",\"ag\":\"best\",\"dist\":0,\"dest\":\"Kurla Bus Station West\",\"rN\":\"A-332\",\"tS\":1780688242000}",
+            "00exzox4DaUci": "{\"lSId\":\"uHYCbrep\",\"eta\":-1,\"isHalted\":false,\"vNo\":\"8521\",\"ag\":\"best\",\"dist\":0,\"dest\":\"Kurla Bus Station West\",\"rN\":\"A-332\",\"tS\":1791300795000}",
+            "00exuECrNeBja": "{\"lSId\":\"uHYCbrep\",\"eta\":-1,\"isHalted\":false,\"vNo\":\"10425\",\"ag\":\"best\",\"dist\":0,\"dest\":\"Kurla Bus Station West\",\"rN\":\"A-332\",\"tS\":1791300871000}",
+            "00extGUWi0wNC": "{\"lSId\":\"uHYCbrep\",\"eta\":-1,\"isHalted\":false,\"vNo\":\"8515\",\"ag\":\"best\",\"dist\":0,\"dest\":\"Kurla Bus Station West\",\"rN\":\"A-332\",\"tS\":1791300389000}"
+        }
+    }
+}

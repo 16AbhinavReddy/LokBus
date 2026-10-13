@@ -1,0 +1,24 @@
+{
+    "routeLiveInfo": {
+        "00f9pdzd25tjq": "{\"lSId\":\"ThiSiAWz\",\"_longitude\":72.81883,\"eta\":41,\"vNo\":\"6346\",\"bearing\":11,\"opId\":\"1909\",\"psId\":\"UfOEiSxp\",\"_isHalted\":false,\"_latitude\":19.182333,\"psTime\":1791449568000,\"tS\":1791449618000,\"sId\":\"XkyBCZhB\"}",
+        "00RNlgOCNKA9P": "{\"lSId\":\"ThiSiAWz\",\"_longitude\":72.81966,\"eta\":26,\"vNo\":\"6340\",\"bearing\":0,\"opId\":\"1909\",\"psId\":\"duEmbuON\",\"_isHalted\":false,\"_latitude\":19.181547,\"psTime\":1780682109000,\"tS\":1780688244000,\"sId\":\"MrCayUZD\"}",
+        "00f9hSe06wi6Q": "{\"lSId\":\"ThiSiAWz\",\"_longitude\":72.847984,\"eta\":269,\"vNo\":\"6325\",\"bearing\":267,\"opId\":\"1909\",\"psId\":\"duEmbuON\",\"_isHalted\":false,\"_latitude\":19.189054,\"psTime\":1791448978000,\"tS\":1791449617000,\"sId\":\"jjezuWfH\"}",
+        "00ROHroMyu8Dv": "{\"lSId\":\"ThiSiAWz\",\"_longitude\":72.82323,\"eta\":27,\"vNo\":\"6413\",\"bearing\":82,\"opId\":\"1909\",\"psId\":\"CWswWoWQ\",\"_isHalted\":false,\"_latitude\":19.19611,\"psTime\":1780688226000,\"tS\":1780688256000,\"sId\":\"NAvipxdS\"}",
+        "00f9jITnk4jwi": "{\"lSId\":\"ThiSiAWz\",\"_longitude\":72.82613,\"eta\":33,\"vNo\":\"6315\",\"bearing\":263,\"opId\":\"1909\",\"psId\":\"duEmbuON\",\"_isHalted\":false,\"_latitude\":19.196407,\"psTime\":1791447821000,\"tS\":1791449614000,\"sId\":\"cripWCRQ\"}",
+        "00f9sHFnQCUCC": "{\"lSId\":\"ThiSiAWz\",\"_longitude\":72.8287,\"eta\":100,\"vNo\":\"6343\",\"bearing\":101,\"opId\":\"1909\",\"psId\":\"kCedUOWW\",\"_isHalted\":false,\"_latitude\":19.19616,\"psTime\":1791449537000,\"tS\":1791449597000,\"sId\":\"tzowMxzj\"}",
+        "00ROHXf12QOcz": "{\"lSId\":\"ThiSiAWz\",\"_longitude\":72.83546,\"eta\":44,\"vNo\":\"6411\",\"bearing\":97,\"opId\":\"1909\",\"psId\":\"sYAWBsps\",\"_isHalted\":false,\"_latitude\":19.195538,\"psTime\":1780688253000,\"tS\":1780688253000,\"sId\":\"RPfCRrsT\"}",
+        "00RO8toLvsNwN": "{\"lSId\":\"ThiSiAWz\",\"_longitude\":72.82224,\"eta\":11,\"vNo\":\"6367\",\"bearing\":264,\"opId\":\"1909\",\"psId\":\"duEmbuON\",\"_isHalted\":false,\"_latitude\":19.195904,\"psTime\":1780686803000,\"tS\":1780688253000,\"sId\":\"gDBfIvbg\"}"
+    },
+    "stopsEta": {
+        "cdXTVQag": {
+            "00f9pdzd25tjq": "{\"lSId\":\"ThiSiAWz\",\"eta\":-1,\"isHalted\":false,\"vNo\":\"6346\",\"ag\":\"best\",\"dist\":0,\"dest\":\"Malad Station West\",\"rN\":\"A-273\",\"tS\":1791449613000}",
+            "00RNlgOCNKA9P": "{\"lSId\":\"ThiSiAWz\",\"eta\":-1,\"isHalted\":false,\"vNo\":\"6340\",\"ag\":\"best\",\"dist\":0,\"dest\":\"Malad Station West\",\"rN\":\"A-273\",\"tS\":1780688234000}",
+            "00f9hSe06wi6Q": "{\"lSId\":\"ThiSiAWz\",\"eta\":-1,\"isHalted\":false,\"vNo\":\"6325\",\"ag\":\"best\",\"dist\":0,\"dest\":\"Malad Station West\",\"rN\":\"A-273\",\"tS\":1791449607000}",
+            "00ROHroMyu8Dv": "{\"lSId\":\"ThiSiAWz\",\"eta\":-1,\"isHalted\":false,\"vNo\":\"6413\",\"ag\":\"best\",\"dist\":0,\"dest\":\"Malad Station West\",\"rN\":\"A-273\",\"tS\":1780688256000}",
+            "00f9jITnk4jwi": "{\"lSId\":\"ThiSiAWz\",\"eta\":-1,\"isHalted\":false,\"vNo\":\"6315\",\"ag\":\"best\",\"dist\":0,\"dest\":\"Malad Station West\",\"rN\":\"A-273\",\"tS\":1791449614000}",
+            "00f9sHFnQCUCC": "{\"lSId\":\"ThiSiAWz\",\"eta\":-1,\"isHalted\":false,\"vNo\":\"6343\",\"ag\":\"best\",\"dist\":0,\"dest\":\"Malad Station West\",\"rN\":\"A-273\",\"tS\":1791449597000}",
+            "00ROHXf12QOcz": "{\"lSId\":\"ThiSiAWz\",\"eta\":-1,\"isHalted\":false,\"vNo\":\"6411\",\"ag\":\"best\",\"dist\":0,\"dest\":\"Malad Station West\",\"rN\":\"A-273\",\"tS\":1780688253000}",
+            "00RO8toLvsNwN": "{\"lSId\":\"ThiSiAWz\",\"eta\":-1,\"isHalted\":false,\"vNo\":\"6367\",\"ag\":\"best\",\"dist\":0,\"dest\":\"Malad Station West\",\"rN\":\"A-273\",\"tS\":1780688253000}"
+        }
+    }
+}

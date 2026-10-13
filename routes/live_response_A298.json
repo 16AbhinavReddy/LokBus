@@ -1,0 +1,12 @@
+{
+    "routeLiveInfo": {
+        "00ROHXjZV0PbL": "{\"lSId\":\"oyolNuML\",\"_longitude\":72.87001,\"eta\":20,\"vNo\":\"8619\",\"bearing\":90,\"opId\":\"1909\",\"psId\":\"zmjiNoDC\",\"_isHalted\":false,\"_latitude\":19.24496,\"psTime\":1780688062000,\"tS\":1780688072000,\"sId\":\"oyolNuML\"}",
+        "00ROIi10VyHPV": "{\"lSId\":\"oyolNuML\",\"_longitude\":72.87017,\"eta\":2,\"vNo\":\"8615\",\"bearing\":32,\"opId\":\"1909\",\"psId\":\"zmjiNoDC\",\"_isHalted\":false,\"_latitude\":19.245707,\"psTime\":1780687803000,\"tS\":1780687863000,\"sId\":\"oyolNuML\"}"
+    },
+    "stopsEta": {
+        "PVawykyx": {
+            "00ROHXjZV0PbL": "{\"lSId\":\"oyolNuML\",\"eta\":-1,\"isHalted\":false,\"vNo\":\"8619\",\"ag\":\"best\",\"dist\":0,\"dest\":\"Rawal Pada Borivali East\",\"rN\":\"A-298\",\"tS\":1780688062000}",
+            "00ROIi10VyHPV": "{\"lSId\":\"oyolNuML\",\"eta\":-1,\"isHalted\":false,\"vNo\":\"8615\",\"ag\":\"best\",\"dist\":0,\"dest\":\"Rawal Pada Borivali East\",\"rN\":\"A-298\",\"tS\":1780687863000}"
+        }
+    }
+}
