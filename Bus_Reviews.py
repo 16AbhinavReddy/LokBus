@@ -1,13 +1,17 @@
-
 import argparse
+import csv
 import json
 import random
 import re
+from collections import Counter
+from datetime import datetime, timedelta
+from pathlib import Path
 
 from mlx_lm import generate, load
 from mlx_lm.sample_utils import make_sampler
 
 MODEL = "mlx-community/Qwen2.5-3B-Instruct-4bit"
+FIELDS = ["review_id", "category", "scenario", "sentiment", "severity", "rating", "route", "timestamp", "time_of_day", "review"]
 SCENARIOS = {
     "Crowding": {
         "Positive": ["plenty of seats", "comfortable standing space", "uncrowded off-peak bus", "orderly boarding", "enough space for bags", "comfortable peak-hour occupancy", "easy exit at stops", "seats available for elderly passengers"],
@@ -18,6 +22,23 @@ SCENARIOS = {
         "Negative": ["dirty floor", "stained seats", "torn seat cushions", "broken hanging strap", "loose grab handle", "damaged seat", "broken window latch", "air conditioning not working", "bad smell inside bus", "leaking roof", "broken interior light", "sticky handrails"],
     },
 }
+
+
+def get_period(hour):
+    if 5 <= hour < 12:
+        return "Morning"
+    if 12 <= hour < 17:
+        return "Afternoon"
+    if 17 <= hour < 21:
+        return "Evening"
+    return "Night"
+
+
+def random_timestamp(rng):
+    start = datetime(2025, 1, 1)
+    end = datetime(2026, 10, 1)
+    seconds = rng.randint(0, int((end - start).total_seconds()))
+    return start + timedelta(seconds=seconds)
 
 
 def clean_text(text):
@@ -96,32 +117,74 @@ def request_batch(model, tokenizer, tasks, sampler):
     return found
 
 
-
 def main():
-    parser = argparse.ArgumentParser()
-    parser.add_argument("--per-category", type=int, default=1500)
-    parser.add_argument("--batch-size", type=int, default=4)
-    parser.add_argument("--seed", type=int, default=42)
-    args = parser.parse_args()
-    if args.per_category < 1 or not 1 <= args.batch_size <= 8:
-        parser.error("--per-category must be positive and --batch-size must be 1 to 8")
-
+    ap = argparse.ArgumentParser()
+    ap.add_argument("--per-category", type=int, default=1500)
+    ap.add_argument("--batch-size", type=int, default=4)
+    ap.add_argument("--output", default="bus_reviews.csv")
+    ap.add_argument("--seed", type=int, default=42)
+    args = ap.parse_args()
+    if args.per_category < 1 or args.batch_size < 1 or args.batch_size > 8:
+        ap.error("--per-category must be positive, and --batch-size must be 1 to 8")
     rng = random.Random(args.seed)
     jobs = make_jobs(args.per_category, rng)
     batches = batches_by_group(jobs, args.batch_size)
-    print(f"Planned {len(jobs)} reviews in {len(batches)} batches")
+    rng.shuffle(batches)
+    print(f"Loading {MODEL} (first run downloads weights)", flush=True)
     model, tokenizer = load(MODEL)
     sampler = make_sampler(temp=0.8, top_p=0.9)
-    generated = 0
-    for number, batch in enumerate(batches, 1):
-        results = request_batch(model, tokenizer, batch, sampler)
-        generated += len(results)
-        if number <= 2:
-            for index, review in sorted(results.items()):
-                print(f"{batch[index]['category']} / {batch[index]['sentiment']}: {review}")
-        if number % 25 == 0 or number == len(batches):
-            print(f"Batch {number}/{len(batches)}: received {generated} reviews")
-    print("Day 2 preview complete. Reviews are not yet saved to CSV.")
+    output = Path(args.output)
+    output.parent.mkdir(parents=True, exist_ok=True)
+    seen = set()
+    counts = Counter()
+    written = 0
+    failed = []
+    with output.open("w", newline="", encoding="utf-8") as f:
+        writer = csv.DictWriter(f, fieldnames=FIELDS)
+        writer.writeheader()
+        for n, batch in enumerate(batches, 1):
+            remaining = list(batch)
+            for attempt in range(4):
+                if not remaining:
+                    break
+                received = request_batch(model, tokenizer, remaining, sampler)
+                next_remaining = []
+                for idx, job in enumerate(remaining):
+                    review = received.get(idx, "")
+                    normalized = re.sub(r"\W+", "", review.lower())
+                    if not review or normalized in seen:
+                        next_remaining.append(job)
+                        continue
+                    seen.add(normalized)
+                    timestamp = random_timestamp(rng)
+                    sentiment = job["sentiment"]
+                    writer.writerow({
+                        "review_id": written + 1,
+                        "category": job["category"],
+                        "scenario": job["scenario"],
+                        "sentiment": sentiment,
+                        "severity": rng.choice(["Low", "Medium", "High"]) if sentiment == "Negative" else "None",
+                        "rating": rng.choice([1, 2]) if sentiment == "Negative" else rng.choice([4, 5]),
+                        "route": f"Route {rng.randint(1, 25)}",
+                        "timestamp": timestamp.strftime("%Y-%m-%d %H:%M:%S"),
+                        "time_of_day": get_period(timestamp.hour),
+                        "review": review,
+                    })
+                    written += 1
+                    counts[(job["category"], sentiment)] += 1
+                remaining = next_remaining
+            failed.extend(remaining)
+            f.flush()  # Keep the output up to date throughout long runs.
+            if n % 25 == 0 or n == len(batches):
+                print(f"Batch {n}/{len(batches)} | saved {written}/{len(jobs)} | unresolved {len(failed)}", flush=True)
+    if failed:
+        missing = output.with_suffix(".missing.json")
+        missing.write_text(json.dumps(failed, indent=2), encoding="utf-8")
+        print(f"WARNING: {len(failed)} items could not be generated. Details: {missing}")
+    print(f"Saved {written} reviews to {output}")
+    for (category, sentiment), count in sorted(counts.items()):
+        print(f"  {category} / {sentiment}: {count}")
+    print("Note: Scenario relevance, sentiment, and severity still require quality checks.")
 
 
 if __name__ == "__main__":
