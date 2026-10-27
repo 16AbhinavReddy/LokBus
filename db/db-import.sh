@@ -3,7 +3,8 @@
 docker compose up -d
 sleep 10
 docker exec lokbus-postgres pg_isready -U lokbus -d lokbus
-
+docker exec -i lokbus-postgres psql -U lokbus -d lokbus -v ON_ERROR_STOP=1 < 01_schema.sql
+docker exec -i lokbus-postgres psql -U lokbus -d lokbus -v ON_ERROR_STOP=1 < 02_staging.sql
 docker cp ../data/valid_bus_route_pairs.csv lokbus-postgres:/tmp/pairs.csv
 docker cp ../data/bus_route_driver_conductor_mapping_with_names.csv lokbus-postgres:/tmp/assignments.csv
 docker cp ../data/bus_reviews_merged.csv lokbus-postgres:/tmp/reviews.csv
