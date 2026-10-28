@@ -1,5 +1,5 @@
 import os
-from flask import Flask, jsonify, request, session
+from flask import Flask, jsonify, request, session, render_template, redirect
 from flask_sqlalchemy import SQLAlchemy
 from argon2 import PasswordHasher
 from argon2.exceptions import VerifyMismatchError, VerificationError
@@ -90,6 +90,31 @@ def logout():
     session.clear()
     return jsonify({"message": "Logged out successfully"})
 
+@app.route("/register-page", methods=["GET"])
+def register_page():
+    if "user_id" in session:
+        return redirect("/profile-page")
+    return render_template("register.html")
+
+
+@app.route("/login-page", methods=["GET"])
+def login_page():
+    if "user_id" in session:
+        return redirect("/profile-page")
+    return render_template("login.html")
+
+
+@app.route("/profile-page", methods=["GET"])
+def profile_page():
+    if "user_id" not in session:
+        return redirect("/login-page")
+    return render_template("profile.html")
+
+@app.route("/", methods=["GET"])
+def home():
+    if "user_id" in session:
+        return redirect("/profile-page")
+    return redirect("/login-page")
 
 if __name__ == "__main__":
     app.run(debug=True)

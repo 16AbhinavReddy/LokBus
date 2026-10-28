@@ -1,0 +1,169 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: Arial, sans-serif;
+    background: #f4f7fb;
+    color: #222;
+}
+
+/* Navbar */
+
+.navbar {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+
+    padding: 20px 8%;
+    background: #ffffff;
+
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08);
+}
+
+.logo {
+    font-size: 26px;
+    font-weight: bold;
+    color: #2563eb;
+}
+
+.nav-links {
+    display: flex;
+    align-items: center;
+    gap: 25px;
+}
+
+.nav-links a {
+    text-decoration: none;
+    color: #444;
+    font-weight: 500;
+}
+
+.nav-links a.active {
+    color: #2563eb;
+}
+
+#logoutBtn {
+    background: #ef4444;
+    color: white;
+    border: none;
+    padding: 10px 18px;
+    border-radius: 6px;
+    cursor: pointer;
+}
+
+#logoutBtn:hover {
+    background: #dc2626;
+}
+
+/* Profile */
+
+.profile-container {
+    display: flex;
+    justify-content: center;
+    align-items: flex-start;
+
+    padding: 70px 20px;
+}
+
+.profile-card {
+    width: 100%;
+    max-width: 600px;
+
+    background: white;
+    border-radius: 14px;
+
+    padding: 35px;
+
+    box-shadow: 0 6px 25px rgba(0, 0, 0, 0.08);
+}
+
+/* Profile header */
+
+.profile-header {
+    text-align: center;
+    padding-bottom: 30px;
+    border-bottom: 1px solid #eee;
+}
+
+.avatar {
+    width: 90px;
+    height: 90px;
+
+    background: #2563eb;
+    color: white;
+
+    border-radius: 50%;
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    font-size: 36px;
+    font-weight: bold;
+
+    margin: 0 auto 20px;
+}
+
+.profile-header h1 {
+    font-size: 26px;
+    margin-bottom: 8px;
+}
+
+.profile-header p {
+    color: #777;
+}
+
+/* Details */
+
+.profile-details {
+    margin-top: 30px;
+}
+
+.profile-details h2 {
+    font-size: 20px;
+    margin-bottom: 25px;
+}
+
+.detail-row {
+    display: flex;
+    justify-content: space-between;
+
+    padding: 15px 0;
+    border-bottom: 1px solid #eee;
+}
+
+.label {
+    color: #777;
+}
+
+.detail-row span:last-child {
+    font-weight: 500;
+}
+
+.error-message {
+    color: #dc2626;
+    text-align: center;
+    margin-top: 20px;
+}
+
+@media (max-width: 600px) {
+    .navbar {
+        padding: 16px;
+    }
+
+    .nav-links {
+        gap: 12px;
+    }
+
+    .profile-card {
+        padding: 24px;
+    }
+
+    .detail-row {
+        flex-direction: column;
+        gap: 8px;
+    }
+}

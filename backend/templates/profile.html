@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>My Profile | LokBus</title>
+
+    <link rel="stylesheet"
+          href="{{ url_for('static', filename='css/profile.css') }}">
+</head>
+
+<body>
+
+    <nav class="navbar">
+        <div class="logo">LokBus</div>
+
+        <div class="nav-links">
+            <a href="/">Home</a>
+            <a href="/profile-page" class="active">My Profile</a>
+            <button id="logoutBtn">Logout</button>
+        </div>
+    </nav>
+
+    <main class="profile-container">
+
+        <div class="profile-card">
+
+            <div class="profile-header">
+                <div class="avatar" id="avatar">U</div>
+
+                <h1 id="displayName">Loading...</h1>
+
+                <p id="displayUsername">@username</p>
+            </div>
+
+            <div class="profile-details">
+
+                <h2>Personal Information</h2>
+
+                <div class="detail-row">
+                    <span class="label">Full Name</span>
+                    <span id="fullName">-</span>
+                </div>
+
+                <div class="detail-row">
+                    <span class="label">Username</span>
+                    <span id="username">-</span>
+                </div>
+
+                <div class="detail-row">
+                    <span class="label">Email Address</span>
+                    <span id="email">-</span>
+                </div>
+
+                <div class="detail-row">
+                    <span class="label">Member Since</span>
+                    <span id="createdAt">-</span>
+                </div>
+
+            </div>
+
+            <p id="errorMessage" class="error-message"></p>
+
+        </div>
+
+    </main>
+
+    <script src="{{ url_for('static', filename='js/profile.js') }}"></script>
+
+</body>
+</html>
