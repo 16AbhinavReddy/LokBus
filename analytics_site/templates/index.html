@@ -1,0 +1,21 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>LokBus review analytics</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='styles.css') }}">
+</head>
+<body>
+    <main>
+        <header>
+            <div><h1>LokBus review analytics</h1><p>Review insights from PostgreSQL</p></div>
+            <button id="refresh">Refresh data</button>
+        </header>
+        <p id="status">Loading reports…</p>
+        <p id="updated"></p>
+        <section id="reports"></section>
+    </main>
+    <script src="{{ url_for('static', filename='dashboard.js') }}"></script>
+</body>
+</html>
