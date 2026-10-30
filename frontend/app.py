@@ -111,10 +111,16 @@ def profile_page():
     return render_template("profile.html")
 
 @app.route("/", methods=["GET"])
-def home():
+def index():
     if "user_id" in session:
         return redirect("/profile-page")
     return redirect("/login-page")
+
+@app.route("/home")
+def home():
+    if "user_id" not in session:
+        return redirect("/login-page")
+    return render_template("home.html")
 
 if __name__ == "__main__":
     app.run(debug=True)

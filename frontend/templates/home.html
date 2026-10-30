@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>LokBus | Home</title>
+    <link rel="stylesheet"
+          href="{{ url_for('static', filename='css/home.css') }}">
+</head>
+<body>
+    <nav class="navbar">
+        <h2>LokBus</h2>
+        <button id="logoutBtn">Logout</button>
+    </nav>
+    <main class="container">
+        <h1>Welcome to LokBus</h1>
+        <p>What would you like to do?</p>
+        <div class="options">
+            <div class="option-card">
+                <h2>🚌 Find Routes</h2>
+                <p>
+                    Discover available Mumbai BEST bus routes.
+                </p>
+                <button id="findRoutesBtn">
+                    Find Routes
+                </button>
+            </div>
+            <div class="option-card">
+                <h2>👤 My Profile</h2>
+                <p>
+                    View your account information.
+                </p>
+                <a href="/profile-page" class="button">
+                    View Profile
+                </a>
+            </div>
+        </div>
+        <p id="statusMessage" role="status" aria-live="polite"></p>
+    </main>
+    <script>
+        const findRoutesBtn = document.getElementById("findRoutesBtn");
+        const statusMessage = document.getElementById("statusMessage");
+        findRoutesBtn.addEventListener("click", async () => {
+            findRoutesBtn.disabled = true;
+            statusMessage.textContent =
+                "Discovering routes. Please complete the Chalo login if prompted.";
+            try {
+                const response = await fetch("/api/generate-routes", {
+                    method: "POST",
+                    credentials: "same-origin"
+                });
+                if (response.status === 401) {
+                    window.location.href = "/login-page";
+                    return;
+                }
+                const data = await response.json();
+                if (!response.ok) {
+                    throw new Error(
+                        data.error || "Unable to generate routes."
+                    );
+                }
+                window.location.href = "/routes-page";
+            } catch (error) {
+                statusMessage.textContent = error.message;
+            } finally {
+                findRoutesBtn.disabled = false;
+            }
+        });
+        document.getElementById("logoutBtn")
+            .addEventListener("click", async () => {
+                const response = await fetch("/logout", {
+                    method: "POST",
+                    credentials: "same-origin"
+                });
+                if (response.ok) {
+                    window.location.href = "/login-page";
+                } else {
+                    alert("Logout failed. Please try again.");
+                }
+            });
+    </script>
+</body>
+</html>
