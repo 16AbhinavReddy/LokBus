@@ -55,11 +55,9 @@
                 }
                 const data = await response.json();
                 if (!response.ok) {
-                    throw new Error(
-                        data.error || "Unable to generate routes."
-                    );
-                }
-                window.location.href = "/routes-page";
+                      throw new Error(data.error || "Route generation failed.");
+                  }
+statusMessage.textContent =`Route generation completed successfully! ${data.count} routes discovered.`;
             } catch (error) {
                 statusMessage.textContent = error.message;
             } finally {
