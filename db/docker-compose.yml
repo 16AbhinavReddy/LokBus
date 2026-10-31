@@ -13,6 +13,7 @@ services:
       - lokbus-postgres-data:/var/lib/postgresql/data
       - ./01_schema.sql:/docker-entrypoint-initdb.d/01_schema.sql:ro
       - ./02_staging.sql:/docker-entrypoint-initdb.d/02_staging.sql:ro
+      - ./06_identity_review_ratings.sql:/docker-entrypoint-initdb.d/06_identity_review_ratings.sql:ro
 
 volumes:
   lokbus-postgres-data:
