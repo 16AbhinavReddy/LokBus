@@ -11,8 +11,7 @@ from dotenv import load_dotenv
 from sqlalchemy.exc import IntegrityError
 
 BASE_DIR = Path(__file__).resolve().parent
-SCRIPT_PATH = BASE_DIR / "queryagnosticrouteinfo.py"
-OUTPUT_PATH = BASE_DIR / "mumbai_routes.json"
+ROUTES_FILE = BASE_DIR / "all_buses.json"
 
 load_dotenv()
 app = Flask(__name__)
@@ -130,20 +129,24 @@ def home():
         return redirect("/login-page")
     return render_template("home.html")
 
-@app.route("/api/generate-routes", methods=["POST"])
-def generate_routes():
+@app.route("/api/routes", methods=["GET"])
+def get_routes():
     if "user_id" not in session:
         return jsonify({"error": "Login required"}), 401
-    if not SCRIPT_PATH.exists():
-        return jsonify({"error": "Script not found"}), 500
     try:
-        OUTPUT_PATH.unlink(missing_ok=True)
-        subprocess.run([sys.executable, str(SCRIPT_PATH)],cwd=BASE_DIR,check=True,timeout=600)
-        with OUTPUT_PATH.open("r", encoding="utf-8") as file:
-            routes = json.load(file)
-        return jsonify({"success": True,"count": len(routes)})
-    except (subprocess.TimeoutExpired, subprocess.CalledProcessError,OSError, json.JSONDecodeError):
-        app.logger.exception("Route generation failed")
-        return jsonify({"error": "Route generation failed"}), 500
+        with ROUTES_FILE.open("r", encoding="utf-8") as file:
+            data = json.load(file)
+        buses = []
+        for vehicle_number, vehicle_data in data.items():
+            observations = vehicle_data.get("observations", [])
+            if not observations:
+                continue
+            latest = max(observations,key=lambda obs: obs.get("timestamp", 0))
+            buses.append({"route_name": latest.get("route_name"),"first_stop": latest.get("first_stop"),"last_stop": latest.get("last_stop"),"vehicle_number": vehicle_data.get("vehicle_number", vehicle_number)})
+        return jsonify(buses)
+    except (OSError, ValueError, TypeError):
+        app.logger.exception("Unable to load routes")
+        return jsonify({"error": "Unable to load routes"}), 500
+
 if __name__ == "__main__":
     app.run(debug=True)
