@@ -2,6 +2,7 @@ import os
 import json
 import subprocess
 import sys
+import threading
 from pathlib import Path
 from flask import Flask, jsonify, request, session, render_template, redirect
 from flask_sqlalchemy import SQLAlchemy
@@ -12,6 +13,9 @@ from sqlalchemy.exc import IntegrityError
 
 BASE_DIR = Path(__file__).resolve().parent
 ROUTES_FILE = BASE_DIR / "all_buses.json"
+COLLECTOR_FILE = BASE_DIR / "busnroute.py"
+SOURCE_ROUTES_FILE = BASE_DIR / "mumbai_routes.json"
+COLLECTION_LOG = BASE_DIR / "bus_collection.log"
 
 load_dotenv()
 app = Flask(__name__)
@@ -24,18 +28,19 @@ app.config["SESSION_COOKIE_SECURE"] = os.getenv("FLASK_ENV") == "production"
 
 db = SQLAlchemy(app)
 password_hasher = PasswordHasher()
+collection_lock = threading.Lock()
+collection_process = None
 
 
 class User(db.Model):
     __tablename__ = "users"
-
     user_id = db.Column(db.BigInteger, primary_key=True)
     full_name = db.Column(db.String(100), nullable=False)
     username = db.Column(db.String(50), unique=True, nullable=False)
     email = db.Column(db.String(255), unique=True, nullable=False)
     password_hash = db.Column(db.Text, nullable=False)
-    created_at = db.Column(db.DateTime(timezone=True),server_default=db.func.now())
-    updated_at = db.Column(db.DateTime(timezone=True),server_default=db.func.now())
+    created_at = db.Column(db.DateTime(timezone=True), server_default=db.func.now())
+    updated_at = db.Column(db.DateTime(timezone=True), server_default=db.func.now())
 
 
 @app.post("/register")
@@ -48,19 +53,20 @@ def register():
 
     if not all([full_name, username, email, password]):
         return jsonify({"error": "All fields are required"}), 400
-
     if len(password) < 12:
         return jsonify({"error": "Password must contain at least 12 characters"}), 400
     if len(full_name) > 100 or len(username) > 50 or len(email) > 255:
         return jsonify({"error": "One or more fields are too long"}), 400
-    user = User(full_name=full_name,username=username,email=email,password_hash=password_hasher.hash(password))
+
+    user = User(full_name=full_name, username=username, email=email,
+                password_hash=password_hasher.hash(password))
     db.session.add(user)
     try:
         db.session.commit()
     except IntegrityError:
         db.session.rollback()
         return jsonify({"error": "Username or email already exists"}), 409
-    return jsonify({"message": "Registration successful","user_id": user.user_id}), 201
+    return jsonify({"message": "Registration successful", "user_id": user.user_id}), 201
 
 
 @app.post("/login")
@@ -89,13 +95,16 @@ def profile():
     if user is None:
         session.clear()
         return jsonify({"error": "User not found"}), 404
-    return jsonify({"user_id": user.user_id,"full_name": user.full_name,"username": user.username,"email": user.email,"created_at": user.created_at.isoformat() if user.created_at else None})
+    return jsonify({"user_id": user.user_id, "full_name": user.full_name,
+                    "username": user.username, "email": user.email,
+                    "created_at": user.created_at.isoformat() if user.created_at else None})
 
 
 @app.post("/logout")
 def logout():
     session.clear()
     return jsonify({"message": "Logged out successfully"})
+
 
 @app.route("/register-page", methods=["GET"])
 def register_page():
@@ -117,19 +126,64 @@ def profile_page():
         return redirect("/login-page")
     return render_template("profile.html")
 
+
 @app.route("/", methods=["GET"])
 def index():
     if "user_id" in session:
         return redirect("/profile-page")
     return redirect("/login-page")
 
+
 @app.route("/home")
 def home():
     if "user_id" not in session:
         return redirect("/login-page")
-    return render_template("home.html")
+    return render_template("home_integrated.html")
 
-@app.route("/api/routes", methods=["GET"])
+
+@app.post("/api/generate-routes")
+def generate_routes():
+    global collection_process
+    if "user_id" not in session:
+        return jsonify({"error": "Login required"}), 401
+
+    with collection_lock: 
+        if not SOURCE_ROUTES_FILE.is_file():
+            return jsonify({"error": "mumbai_routes.json not found in frontend/"}), 404
+        if not COLLECTOR_FILE.is_file():
+            return jsonify({"error": "busnroute.py not found in frontend/"}), 404
+
+        try:
+            
+            ROUTES_FILE.unlink(missing_ok=True)
+            (BASE_DIR / "all_bus_observations.json").unlink(missing_ok=True)
+            with COLLECTION_LOG.open("w", encoding="utf-8") as log:
+                collection_process = subprocess.Popen([sys.executable, "-u", str(COLLECTOR_FILE)],cwd=BASE_DIR,stdout=log,stderr=subprocess.STDOUT,)
+        except OSError:
+            app.logger.exception("Unable to start bus collector")
+            return jsonify({"error": "Unable to start bus collector"}), 500
+    return jsonify({"state": "running"}), 202
+
+
+@app.get("/api/generate-routes/status")
+def generate_routes_status():
+    if "user_id" not in session:
+        return jsonify({"error": "Login required"}), 401
+    with collection_lock:
+        process = collection_process
+        if process is None:
+            return jsonify({"state": "idle"})
+        return_code = process.poll()
+    if return_code is None:
+        return jsonify({"state": "running"})
+    if return_code != 0:
+        return jsonify({"state": "failed", "error": "Collection failed; check frontend/bus_collection.log"})
+    if not ROUTES_FILE.is_file():
+        return jsonify({"state": "failed", "error": "Collection finished without producing all_buses.json"})
+    return jsonify({"state": "completed"})
+
+
+@app.get("/api/routes")
 def get_routes():
     if "user_id" not in session:
         return jsonify({"error": "Login required"}), 401
@@ -141,12 +195,18 @@ def get_routes():
             observations = vehicle_data.get("observations", [])
             if not observations:
                 continue
-            latest = max(observations,key=lambda obs: obs.get("timestamp", 0))
-            buses.append({"route_name": latest.get("route_name"),"first_stop": latest.get("first_stop"),"last_stop": latest.get("last_stop"),"vehicle_number": vehicle_data.get("vehicle_number", vehicle_number)})
+            latest = max(observations, key=lambda obs: obs.get("timestamp") or 0)
+            buses.append({
+                "route_name": latest.get("route_name"),
+                "first_stop": latest.get("first_stop"),
+                "last_stop": latest.get("last_stop"),
+                "vehicle_number": vehicle_data.get("vehicle_number", vehicle_number),
+            })
         return jsonify(buses)
-    except (OSError, ValueError, TypeError):
+    except (OSError, ValueError, TypeError, AttributeError):
         app.logger.exception("Unable to load routes")
         return jsonify({"error": "Unable to load routes"}), 500
 
-if __name__ == "__main__":
-    app.run(debug=True)
+
+if __name__ == "__main__":    
+    app.run(debug=True, use_reloader=False)

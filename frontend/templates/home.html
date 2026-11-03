@@ -1,14 +1,11 @@
-
 <!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>LokBus | Home</title>
-    <link rel="stylesheet"
-          href="{{ url_for('static', filename='css/home.css') }}">
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/home.css') }}">
 </head>
-
 <body>
     <nav class="navbar">
         <h2>LokBus</h2>
@@ -18,51 +15,36 @@
     <main class="container">
         <h1>Welcome to LokBus</h1>
         <p>What would you like to do?</p>
-
         <div class="options">
             <div class="option-card">
                 <h2>🚌 Find Routes</h2>
-                <p>
-                    Discover available Mumbai BEST bus routes.
-                </p>
-                <button id="findRoutesBtn">
-                    Find Routes
-                </button>
+                <p>Discover available Mumbai BEST bus routes.</p>
+                <button id="findRoutesBtn" type="button">Find Routes</button>
             </div>
-
             <div class="option-card">
                 <h2>👤 My Profile</h2>
-                <p>
-                    View your account information.
-                </p>
-                <a href="/profile-page" class="button">
-                    View Profile
-                </a>
+                <p>View your account information.</p>
+                <a href="/profile-page" class="button">View Profile</a>
             </div>
         </div>
 
-        <p id="statusMessage"
-           role="status"
-           aria-live="polite"></p>
-
-        <!-- Bus routes displayed below the buttons -->
+        <p id="statusMessage" role="status" aria-live="polite"></p>
         <section id="routesSection" hidden>
             <h2>Mumbai BEST Buses</h2>
-
-            <table class="routes-table">
-                <thead>
-                    <tr>
-                        <th>Route Number</th>
-                        <th>Starting Point</th>
-                        <th>Ending Point</th>
-                        <th>Bus Number</th>
-                    </tr>
-                </thead>
-                <tbody id="routesTableBody"></tbody>
-            </table>
-	    <button id="toggleRoutesBtn" type="button">
-            Hide Routes
-            </button>
+            <button id="toggleRoutesBtn" type="button" aria-expanded="true">Hide Routes</button>
+            <div id="routesTableWrapper" style="overflow-x:auto;">
+                <table class="routes-table">
+                    <thead>
+                        <tr>
+                            <th>Route Number</th>
+                            <th>Starting Point</th>
+                            <th>Ending Point</th>
+                            <th>Bus Number</th>
+                        </tr>
+                    </thead>
+                    <tbody id="routesTableBody"></tbody>
+                </table>
+            </div>
         </section>
     </main>
 
@@ -71,70 +53,79 @@
         const statusMessage = document.getElementById("statusMessage");
         const routesSection = document.getElementById("routesSection");
         const routesTableBody = document.getElementById("routesTableBody");
+        const routesTableWrapper = document.getElementById("routesTableWrapper");
         const toggleRoutesBtn = document.getElementById("toggleRoutesBtn");
+
+        const sleep = (ms) => new Promise(resolve => setTimeout(resolve, ms));
+
+        async function getJSON(url, options = {}) {
+            const response = await fetch(url, {credentials: "same-origin", ...options});
+            if (response.status === 401) {
+                window.location.href = "/login-page";
+                throw new Error("Login required");
+            }
+            const data = await response.json();
+            if (!response.ok) throw new Error(data.error || "Request failed");
+            return data;
+        }
+
+        function renderBuses(buses) {
+            routesTableBody.replaceChildren();
+            for (const bus of buses) {
+                const row = document.createElement("tr");
+                for (const value of [bus.route_name, bus.first_stop, bus.last_stop, bus.vehicle_number]) {
+                    const cell = document.createElement("td");
+                    cell.textContent = value ?? "—";
+                    row.appendChild(cell);
+                }
+                routesTableBody.appendChild(row);
+            }
+            routesSection.hidden = false;
+            routesTableWrapper.hidden = false;
+            toggleRoutesBtn.textContent = "Hide Routes";
+            toggleRoutesBtn.setAttribute("aria-expanded", "true");
+        }
+
         findRoutesBtn.addEventListener("click", async () => {
             findRoutesBtn.disabled = true;
-            statusMessage.textContent = "Loading buses...";
+            routesSection.hidden = true;
+            statusMessage.textContent = "Starting collection. Complete the Chalo OTP login in the browser opened by Flask...";
             try {
-                const response = await fetch("/api/routes", {
-                    method: "GET",
-                    credentials: "same-origin"
-                });
-                if (response.status === 401) {
-                    window.location.href = "/login-page";
-                    return;
-                }
-                const data = await response.json();
-                if (!response.ok) {
-                    throw new Error(
-                        data.error || "Failed to load bus routes."
-                    );
-                }
-                routesTableBody.replaceChildren();
-                for (const bus of data) {
-                    const row = document.createElement("tr");
-                    const values = [
-                        bus.route_name,
-                        bus.first_stop,
-                        bus.last_stop,
-                        bus.vehicle_number
-                    ];
-                    for (const value of values) {
-                        const cell = document.createElement("td");
-                        cell.textContent = value ?? "—";
-                        row.appendChild(cell);
+                await getJSON("/api/generate-routes", {method: "POST"});
+                let status;
+                do {
+                    await sleep(2000);
+                    status = await getJSON("/api/generate-routes/status");
+                    if (status.state === "running") {
+                        statusMessage.textContent = "Collecting bus data for up to 10 routes. Complete Chalo OTP login if prompted...";
                     }
-                    routesTableBody.appendChild(row);
+                } while (status.state === "running");
+
+                if (status.state !== "completed") {
+                    throw new Error(status.error || "Bus collection failed. Check the Flask terminal.");
                 }
-                routesSection.hidden = data.length === 0;
-		document.querySelector(".routes-table").hidden = false;
-                toggleRoutesBtn.textContent = "Hide Routes";    
-                statusMessage.textContent =
-                    `${data.length} buses found.`;
+                const buses = await getJSON("/api/routes");
+                renderBuses(buses);
+                statusMessage.textContent = `${buses.length} buses found from the selected routes.`;
             } catch (error) {
-                routesSection.hidden = true;
                 statusMessage.textContent = error.message;
             } finally {
                 findRoutesBtn.disabled = false;
             }
         });
-	toggleRoutesBtn.addEventListener("click", () => {
-    const table = document.querySelector(".routes-table");
-    table.hidden = !table.hidden;
-    toggleRoutesBtn.textContent = table.hidden ? "Show Routes" : "Hide Routes";});
-        document.getElementById("logoutBtn")
-            .addEventListener("click", async () => {
-                const response = await fetch("/logout", {
-                    method: "POST",
-                    credentials: "same-origin"
-                });
-                if (response.ok) {
-                    window.location.href = "/login-page";
-                } else {
-                    alert("Logout failed. Please try again.");
-                }
-            });
+
+        toggleRoutesBtn.addEventListener("click", () => {
+            routesTableWrapper.hidden = !routesTableWrapper.hidden;
+            const visible = !routesTableWrapper.hidden;
+            toggleRoutesBtn.textContent = visible ? "Hide Routes" : "Show Routes";
+            toggleRoutesBtn.setAttribute("aria-expanded", String(visible));
+        });
+
+        document.getElementById("logoutBtn").addEventListener("click", async () => {
+            const response = await fetch("/logout", {method: "POST", credentials: "same-origin"});
+            if (response.ok) window.location.href = "/login-page";
+            else alert("Logout failed. Please try again.");
+        });
     </script>
 </body>
 </html>
-
