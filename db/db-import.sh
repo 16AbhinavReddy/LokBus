@@ -11,6 +11,7 @@ docker cp ../data/bus_reviews_merged.csv lokbus-postgres:/tmp/reviews.csv
 
 docker exec -i lokbus-postgres psql -U lokbus -d lokbus -v ON_ERROR_STOP=1 -c "\copy stg_bus_route_pairs FROM '/tmp/pairs.csv' WITH (FORMAT csv, HEADER true)" -c "\copy stg_assignments FROM '/tmp/assignments.csv' WITH (FORMAT csv, HEADER true)" -c "\copy stg_reviews FROM '/tmp/reviews.csv' WITH (FORMAT csv, HEADER true)"
 
+docker exec -i lokbus-postgres psql -U lokbus -d lokbus -v ON_ERROR_STOP=1 < 05_users.sql
 docker exec -i lokbus-postgres psql -U lokbus -d lokbus -v ON_ERROR_STOP=1 < 03_load.sql
 docker exec -i lokbus-postgres psql -U lokbus -d lokbus -v ON_ERROR_STOP=1 < 06_identity_review_ratings.sql
 
