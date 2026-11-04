@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Write a Review | LokBus</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/profile.css') }}">
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/review.css') }}">
+</head>
+<body>
+    <nav class="navbar">
+        <div class="logo">LokBus</div>
+        <div class="nav-links">
+            <a href="{{ url_for('home') }}">Home</a>
+            <a href="/profile-page">My Profile</a>
+            <a href="/review-page" class="active">Write a Review</a>
+            <button id="logoutBtn">Logout</button>
+        </div>
+    </nav>
+    <main class="review-container">
+        <section class="review-card">
+            <h1>Share a bus review</h1>
+            <p>Choose a bus operating live, then tell us about your trip.</p>
+            <form id="reviewForm">
+                <label for="reviewBus">Bus vehicle number</label>
+                <select id="reviewBus" name="vehicle_number" required>
+                    <option value="">Loading operating buses...</option>
+                </select>
+                <label for="reviewRating">Rating (optional)</label>
+                <select id="reviewRating" name="rating">
+                    <option value="">No rating</option>
+                    <option value="5">5 - Excellent</option>
+                    <option value="4">4 - Good</option>
+                    <option value="3">3 - Okay</option>
+                    <option value="2">2 - Poor</option>
+                    <option value="1">1 - Very poor</option>
+                </select>
+                <label for="reviewText">Your review</label>
+                <textarea id="reviewText" name="review" maxlength="5000" required rows="5" placeholder="How was your journey?"></textarea>
+                <button id="submitReviewBtn" type="submit">Submit review</button>
+            </form>
+            <p id="reviewStatus" role="status" aria-live="polite"></p>
+        </section>
+    </main>
+    <script src="{{ url_for('static', filename='js/review.js') }}"></script>
+</body>
+</html>

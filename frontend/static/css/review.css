@@ -1,0 +1,54 @@
+.review-container {
+    display: flex;
+    justify-content: center;
+    padding: 70px 20px;
+}
+
+.review-card {
+    width: 100%;
+    max-width: 640px;
+    padding: 35px;
+    background: white;
+    border-radius: 14px;
+    box-shadow: 0 6px 25px rgba(0, 0, 0, 0.08);
+}
+
+.review-card h1, .review-card > p {
+    text-align: center; 
+}
+
+.review-card > p { 
+    color: #666; 
+    margin: 12px 0 28px; 
+}
+
+.review-card form { 
+    display: grid; 
+    gap: 10px; 
+}
+
+.review-card label { 
+    font-weight: 600; 
+}
+
+.review-card select, .review-card textarea {
+    width: 100%; padding: 11px; border: 1px solid #cbd5e1;
+    border-radius: 6px; font: inherit; margin-bottom: 8px;
+}
+
+.review-card form button {
+    padding: 12px; color: white; background: #2563eb;
+    border: 0; border-radius: 7px; cursor: pointer;
+}
+
+.review-card form button:disabled { 
+    opacity: .6; 
+    cursor: wait; 
+}
+
+#reviewStatus { 
+    min-height: 1.4em; 
+    margin-top: 18px; 
+    color: #334155; 
+    text-align: center; 
+}

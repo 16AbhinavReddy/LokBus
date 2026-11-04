@@ -138,7 +138,7 @@ def index():
 def home():
     if "user_id" not in session:
         return redirect("/login-page")
-    return render_template("home_integrated.html")
+    return render_template("home.html")
 
 
 @app.post("/api/generate-routes")
