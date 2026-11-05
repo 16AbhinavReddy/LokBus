@@ -1,0 +1,354 @@
+{
+  "810": {
+    "vehicle_number": "810",
+    "observations": [
+      {
+        "vehicle_number": "810",
+        "route_id": "uMVQOWLQ",
+        "route_name": "A-21",
+        "first_stop": "Trombay",
+        "last_stop": "Dr Shyamaprasad Mukherji Chowk Or Museum",
+        "latitude": 18.996338,
+        "longitude": 72.83724,
+        "timestamp": 1793854074000,
+        "internal_id": "00iEHQHG6hubY"
+      }
+    ]
+  },
+  "787": {
+    "vehicle_number": "787",
+    "observations": [
+      {
+        "vehicle_number": "787",
+        "route_id": "uMVQOWLQ",
+        "route_name": "A-21",
+        "first_stop": "Trombay",
+        "last_stop": "Dr Shyamaprasad Mukherji Chowk Or Museum",
+        "latitude": 18.960995,
+        "longitude": 72.83195,
+        "timestamp": 1793854076000,
+        "internal_id": "00iEAI3ULXg1I"
+      }
+    ]
+  },
+  "784": {
+    "vehicle_number": "784",
+    "observations": [
+      {
+        "vehicle_number": "784",
+        "route_id": "uMVQOWLQ",
+        "route_name": "A-21",
+        "first_stop": "Trombay",
+        "last_stop": "Dr Shyamaprasad Mukherji Chowk Or Museum",
+        "latitude": 18.944895,
+        "longitude": 72.8346,
+        "timestamp": 1793854081000,
+        "internal_id": "00iE598TySMHB"
+      }
+    ]
+  },
+  "785": {
+    "vehicle_number": "785",
+    "observations": [
+      {
+        "vehicle_number": "785",
+        "route_id": "uMVQOWLQ",
+        "route_name": "A-21",
+        "first_stop": "Trombay",
+        "last_stop": "Dr Shyamaprasad Mukherji Chowk Or Museum",
+        "latitude": 19.046457,
+        "longitude": 72.893196,
+        "timestamp": 1793854079000,
+        "internal_id": "00iEUj2Pg2CAs"
+      }
+    ]
+  },
+  "786": {
+    "vehicle_number": "786",
+    "observations": [
+      {
+        "vehicle_number": "786",
+        "route_id": "uMVQOWLQ",
+        "route_name": "A-21",
+        "first_stop": "Trombay",
+        "last_stop": "Dr Shyamaprasad Mukherji Chowk Or Museum",
+        "latitude": 19.046875,
+        "longitude": 72.86642,
+        "timestamp": 1793854077000,
+        "internal_id": "00iEMw7SF2OeI"
+      }
+    ]
+  },
+  "762": {
+    "vehicle_number": "762",
+    "observations": [
+      {
+        "vehicle_number": "762",
+        "route_id": "YTlGDpCL",
+        "route_name": "A-21",
+        "first_stop": "Dr Shyamaprasad Mukherji Chowk",
+        "last_stop": "Trombay",
+        "latitude": 19.04612,
+        "longitude": 72.91191,
+        "timestamp": 1793851825000,
+        "internal_id": "00iE3CtvcnQQL"
+      }
+    ]
+  },
+  "804": {
+    "vehicle_number": "804",
+    "observations": [
+      {
+        "vehicle_number": "804",
+        "route_id": "YTlGDpCL",
+        "route_name": "A-21",
+        "first_stop": "Dr Shyamaprasad Mukherji Chowk",
+        "last_stop": "Trombay",
+        "latitude": 19.049305,
+        "longitude": 72.87064,
+        "timestamp": 1793728987000,
+        "internal_id": "00i4S1DlTehbU"
+      }
+    ]
+  },
+  "783": {
+    "vehicle_number": "783",
+    "observations": [
+      {
+        "vehicle_number": "783",
+        "route_id": "YTlGDpCL",
+        "route_name": "A-21",
+        "first_stop": "Dr Shyamaprasad Mukherji Chowk",
+        "last_stop": "Trombay",
+        "latitude": 18.93554,
+        "longitude": 72.83337,
+        "timestamp": 1793854078000,
+        "internal_id": "00iEZmYB8lThw"
+      }
+    ]
+  },
+  "781": {
+    "vehicle_number": "781",
+    "observations": [
+      {
+        "vehicle_number": "781",
+        "route_id": "YTlGDpCL",
+        "route_name": "A-21",
+        "first_stop": "Dr Shyamaprasad Mukherji Chowk",
+        "last_stop": "Trombay",
+        "latitude": 19.045923,
+        "longitude": 72.86522,
+        "timestamp": 1793854074000,
+        "internal_id": "00iEJXJGz66kb"
+      }
+    ]
+  },
+  "782": {
+    "vehicle_number": "782",
+    "observations": [
+      {
+        "vehicle_number": "782",
+        "route_id": "YTlGDpCL",
+        "route_name": "A-21",
+        "first_stop": "Dr Shyamaprasad Mukherji Chowk",
+        "last_stop": "Trombay",
+        "latitude": 18.997738,
+        "longitude": 72.83718,
+        "timestamp": 1793854085000,
+        "internal_id": "00iEOS4Mm2o1A"
+      }
+    ]
+  },
+  "6738": {
+    "vehicle_number": "6738",
+    "observations": [
+      {
+        "vehicle_number": "6738",
+        "route_id": "mZZRrkjt",
+        "route_name": "A-19",
+        "first_stop": "Shivaji Nagar Bus Station",
+        "last_stop": "Mantralaya",
+        "latitude": 18.92877,
+        "longitude": 72.82325,
+        "timestamp": 1793853402000,
+        "internal_id": "00iE41Z5CKM8v"
+      }
+    ]
+  },
+  "6773": {
+    "vehicle_number": "6773",
+    "observations": [
+      {
+        "vehicle_number": "6773",
+        "route_id": "mZZRrkjt",
+        "route_name": "A-19",
+        "first_stop": "Shivaji Nagar Bus Station",
+        "last_stop": "Mantralaya",
+        "latitude": 19.061594,
+        "longitude": 72.900635,
+        "timestamp": 1793854088000,
+        "internal_id": "00iEVwmIHd5pw"
+      }
+    ]
+  },
+  "6789": {
+    "vehicle_number": "6789",
+    "observations": [
+      {
+        "vehicle_number": "6789",
+        "route_id": "mZZRrkjt",
+        "route_name": "A-19",
+        "first_stop": "Shivaji Nagar Bus Station",
+        "last_stop": "Mantralaya",
+        "latitude": 18.926018,
+        "longitude": 72.8317,
+        "timestamp": 1793854086000,
+        "internal_id": "00iE9rI2E7HZQ"
+      }
+    ]
+  },
+  "6763": {
+    "vehicle_number": "6763",
+    "observations": [
+      {
+        "vehicle_number": "6763",
+        "route_id": "mZZRrkjt",
+        "route_name": "A-19",
+        "first_stop": "Shivaji Nagar Bus Station",
+        "last_stop": "Mantralaya",
+        "latitude": 19.05405,
+        "longitude": 72.893486,
+        "timestamp": 1793854087000,
+        "internal_id": "00iEVXsSLMPuj"
+      }
+    ]
+  },
+  "6726": {
+    "vehicle_number": "6726",
+    "observations": [
+      {
+        "vehicle_number": "6726",
+        "route_id": "mZZRrkjt",
+        "route_name": "A-19",
+        "first_stop": "Shivaji Nagar Bus Station",
+        "last_stop": "Mantralaya",
+        "latitude": 19.023071,
+        "longitude": 72.85196,
+        "timestamp": 1793854086000,
+        "internal_id": "00iEKSLukW5T8"
+      }
+    ]
+  },
+  "6727": {
+    "vehicle_number": "6727",
+    "observations": [
+      {
+        "vehicle_number": "6727",
+        "route_id": "mZZRrkjt",
+        "route_name": "A-19",
+        "first_stop": "Shivaji Nagar Bus Station",
+        "last_stop": "Mantralaya",
+        "latitude": 19.058949,
+        "longitude": 72.91358,
+        "timestamp": 1793853952000,
+        "internal_id": "00iEYwTuosDp2"
+      }
+    ]
+  },
+  "6774": {
+    "vehicle_number": "6774",
+    "observations": [
+      {
+        "vehicle_number": "6774",
+        "route_id": "JRqoMSDT",
+        "route_name": "A-19",
+        "first_stop": "Mantralaya",
+        "last_stop": "Shivaji Nagar Bus Station",
+        "latitude": 19.067827,
+        "longitude": 72.9287,
+        "timestamp": 1793854090000,
+        "internal_id": "00iEVfzoBDYzi"
+      }
+    ]
+  },
+  "6744": {
+    "vehicle_number": "6744",
+    "observations": [
+      {
+        "vehicle_number": "6744",
+        "route_id": "JRqoMSDT",
+        "route_name": "A-19",
+        "first_stop": "Mantralaya",
+        "last_stop": "Shivaji Nagar Bus Station",
+        "latitude": 19.029552,
+        "longitude": 72.857285,
+        "timestamp": 1793854091000,
+        "internal_id": "00iEOdAVH5bNI"
+      }
+    ]
+  },
+  "6786": {
+    "vehicle_number": "6786",
+    "observations": [
+      {
+        "vehicle_number": "6786",
+        "route_id": "JRqoMSDT",
+        "route_name": "A-19",
+        "first_stop": "Mantralaya",
+        "last_stop": "Shivaji Nagar Bus Station",
+        "latitude": 19.067793,
+        "longitude": 72.92923,
+        "timestamp": 1793854087000,
+        "internal_id": "00iECGhJ6ONzV"
+      }
+    ]
+  },
+  "6750": {
+    "vehicle_number": "6750",
+    "observations": [
+      {
+        "vehicle_number": "6750",
+        "route_id": "JRqoMSDT",
+        "route_name": "A-19",
+        "first_stop": "Mantralaya",
+        "last_stop": "Shivaji Nagar Bus Station",
+        "latitude": 19.054272,
+        "longitude": 72.89121,
+        "timestamp": 1793854085000,
+        "internal_id": "00iELdsfOh2kD"
+      }
+    ]
+  },
+  "1011W": {
+    "vehicle_number": "1011W",
+    "observations": [
+      {
+        "vehicle_number": "1011W",
+        "route_id": "slLHPyTi",
+        "route_name": "A-318",
+        "first_stop": "Kurla Bus Station West",
+        "last_stop": "Santacruz Station East",
+        "latitude": 19.074524,
+        "longitude": 72.87149,
+        "timestamp": 1793854075000,
+        "internal_id": "00iEbinF8Poci"
+      }
+    ]
+  },
+  "1007W": {
+    "vehicle_number": "1007W",
+    "observations": [
+      {
+        "vehicle_number": "1007W",
+        "route_id": "lWTHVqGz",
+        "route_name": "A-318",
+        "first_stop": "Santacruz Station East",
+        "last_stop": "Kurla Bus Station West",
+        "latitude": 19.071474,
+        "longitude": 72.8621,
+        "timestamp": 1793853986000,
+        "internal_id": "00iEVRHMHjFtA"
+      }
+    ]
+  }
+}

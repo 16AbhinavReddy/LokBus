@@ -1,11 +1,11 @@
 import os
 import json
-import subprocess
-import sys
 import threading
 from pathlib import Path
 from flask import Flask, jsonify, request, session, render_template, redirect
 from flask_sqlalchemy import SQLAlchemy
+import subprocess
+import sys
 from argon2 import PasswordHasher
 from argon2.exceptions import VerifyMismatchError, VerificationError
 from dotenv import load_dotenv
@@ -27,6 +27,11 @@ app.config["SESSION_COOKIE_SAMESITE"] = "Lax"
 app.config["SESSION_COOKIE_SECURE"] = os.getenv("FLASK_ENV") == "production"
 
 db = SQLAlchemy(app)
+try:
+    from .review_routes import register_review_routes
+except ImportError:
+    from review_routes import register_review_routes
+register_review_routes(app, db, BASE_DIR)
 password_hasher = PasswordHasher()
 collection_lock = threading.Lock()
 collection_process = None
@@ -119,6 +124,11 @@ def login_page():
         return redirect("/profile-page")
     return render_template("login.html")
 
+@app.route("/review-page", methods=["GET"])
+def review_page():
+    if "user_id" not in session:
+        return redirect("/login-page")
+    return render_template("review.html")
 
 @app.route("/profile-page", methods=["GET"])
 def profile_page():
