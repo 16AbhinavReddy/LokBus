@@ -10,38 +10,32 @@ Starting collection for 10 routes...
   Reported buses: 0
 [4/10] A-21 (uMVQOWLQ)
   Reported buses: 5
-    Bus 810 | Route A-21 | Trombay -> Dr Shyamaprasad Mukherji Chowk Or Museum
-    Bus 787 | Route A-21 | Trombay -> Dr Shyamaprasad Mukherji Chowk Or Museum
-    Bus 784 | Route A-21 | Trombay -> Dr Shyamaprasad Mukherji Chowk Or Museum
-    Bus 785 | Route A-21 | Trombay -> Dr Shyamaprasad Mukherji Chowk Or Museum
-    Bus 786 | Route A-21 | Trombay -> Dr Shyamaprasad Mukherji Chowk Or Museum
+    Bus 766 | Route A-21 | Trombay -> Dr Shyamaprasad Mukherji Chowk Or Museum
+    Bus 790 | Route A-21 | Trombay -> Dr Shyamaprasad Mukherji Chowk Or Museum
+    Bus 6907 | Route A-21 | Trombay -> Dr Shyamaprasad Mukherji Chowk Or Museum
+    Bus 768 | Route A-21 | Trombay -> Dr Shyamaprasad Mukherji Chowk Or Museum
+    Bus 777 | Route A-21 | Trombay -> Dr Shyamaprasad Mukherji Chowk Or Museum
 [5/10] A-21 (YTlGDpCL)
-  Reported buses: 5
-    Bus 762 | Route A-21 | Dr Shyamaprasad Mukherji Chowk -> Trombay
-    Bus 804 | Route A-21 | Dr Shyamaprasad Mukherji Chowk -> Trombay
-    Bus 783 | Route A-21 | Dr Shyamaprasad Mukherji Chowk -> Trombay
-    Bus 781 | Route A-21 | Dr Shyamaprasad Mukherji Chowk -> Trombay
-    Bus 782 | Route A-21 | Dr Shyamaprasad Mukherji Chowk -> Trombay
-[6/10] A-19 (mZZRrkjt)
   Reported buses: 6
-    Bus 6738 | Route A-19 | Shivaji Nagar Bus Station -> Mantralaya
-    Bus 6773 | Route A-19 | Shivaji Nagar Bus Station -> Mantralaya
-    Bus 6789 | Route A-19 | Shivaji Nagar Bus Station -> Mantralaya
-    Bus 6763 | Route A-19 | Shivaji Nagar Bus Station -> Mantralaya
-    Bus 6726 | Route A-19 | Shivaji Nagar Bus Station -> Mantralaya
-    Bus 6727 | Route A-19 | Shivaji Nagar Bus Station -> Mantralaya
+    Bus 804 | Route A-21 | Dr Shyamaprasad Mukherji Chowk -> Trombay
+    Bus 762 | Route A-21 | Dr Shyamaprasad Mukherji Chowk -> Trombay
+    Bus 819 | Route A-21 | Dr Shyamaprasad Mukherji Chowk -> Trombay
+    Bus 6911 | Route A-21 | Dr Shyamaprasad Mukherji Chowk -> Trombay
+    Bus 797 | Route A-21 | Dr Shyamaprasad Mukherji Chowk -> Trombay
+    Bus 781 | Route A-21 | Dr Shyamaprasad Mukherji Chowk -> Trombay
+[6/10] A-19 (mZZRrkjt)
+  Reported buses: 2
+    Bus 6799 | Route A-19 | Shivaji Nagar Bus Station -> Mantralaya
+    Bus 8830 | Route A-19 | Shivaji Nagar Bus Station -> Mantralaya
 [7/10] A-19 (JRqoMSDT)
-  Reported buses: 4
-    Bus 6774 | Route A-19 | Mantralaya -> Shivaji Nagar Bus Station
-    Bus 6744 | Route A-19 | Mantralaya -> Shivaji Nagar Bus Station
+  Reported buses: 3
+    Bus 6763 | Route A-19 | Mantralaya -> Shivaji Nagar Bus Station
     Bus 6786 | Route A-19 | Mantralaya -> Shivaji Nagar Bus Station
-    Bus 6750 | Route A-19 | Mantralaya -> Shivaji Nagar Bus Station
+    Bus 6722 | Route A-19 | Mantralaya -> Shivaji Nagar Bus Station
 [8/10] A-318 (slLHPyTi)
-  Reported buses: 1
-    Bus 1011W | Route A-318 | Kurla Bus Station West -> Santacruz Station East
+  Reported buses: 0
 [9/10] A-318 (lWTHVqGz)
-  Reported buses: 1
-    Bus 1007W | Route A-318 | Santacruz Station East -> Kurla Bus Station West
+  Reported buses: 0
 [10/10] A-481 (bDfFLuCm)
   Reported buses: 0
 
@@ -50,106 +44,90 @@ COLLECTION SUMMARY
 Routes selected: 10
 Routes fetched successfully: 8
 Routes failed: 2
-Total bus observations: 22
-Unique physical buses: 22
+Total bus observations: 16
+Unique physical buses: 16
 Saved: all_bus_observations.json
 Saved: all_buses.json
 
 CONTENTS OF all_buses.json:
 {
-  "810": {
-    "vehicle_number": "810",
+  "766": {
+    "vehicle_number": "766",
     "observations": [
       {
-        "vehicle_number": "810",
+        "vehicle_number": "766",
         "route_id": "uMVQOWLQ",
         "route_name": "A-21",
         "first_stop": "Trombay",
         "last_stop": "Dr Shyamaprasad Mukherji Chowk Or Museum",
-        "latitude": 18.996338,
-        "longitude": 72.83724,
-        "timestamp": 1793854074000,
-        "internal_id": "00iEHQHG6hubY"
+        "latitude": 18.985044,
+        "longitude": 72.83561,
+        "timestamp": 1793871461000,
+        "internal_id": "00iFadraCQgpE"
       }
     ]
   },
-  "787": {
-    "vehicle_number": "787",
+  "790": {
+    "vehicle_number": "790",
     "observations": [
       {
-        "vehicle_number": "787",
+        "vehicle_number": "790",
         "route_id": "uMVQOWLQ",
         "route_name": "A-21",
         "first_stop": "Trombay",
         "last_stop": "Dr Shyamaprasad Mukherji Chowk Or Museum",
-        "latitude": 18.960995,
-        "longitude": 72.83195,
-        "timestamp": 1793854076000,
-        "internal_id": "00iEAI3ULXg1I"
+        "latitude": 18.925112,
+        "longitude": 72.83239,
+        "timestamp": 1793871469000,
+        "internal_id": "00iFFhNEOiExV"
       }
     ]
   },
-  "784": {
-    "vehicle_number": "784",
+  "6907": {
+    "vehicle_number": "6907",
     "observations": [
       {
-        "vehicle_number": "784",
+        "vehicle_number": "6907",
         "route_id": "uMVQOWLQ",
         "route_name": "A-21",
         "first_stop": "Trombay",
         "last_stop": "Dr Shyamaprasad Mukherji Chowk Or Museum",
-        "latitude": 18.944895,
-        "longitude": 72.8346,
-        "timestamp": 1793854081000,
-        "internal_id": "00iE598TySMHB"
+        "latitude": 19.042603,
+        "longitude": 72.926544,
+        "timestamp": 1793871450000,
+        "internal_id": "00iFxhQut9Cj4"
       }
     ]
   },
-  "785": {
-    "vehicle_number": "785",
+  "768": {
+    "vehicle_number": "768",
     "observations": [
       {
-        "vehicle_number": "785",
+        "vehicle_number": "768",
         "route_id": "uMVQOWLQ",
         "route_name": "A-21",
         "first_stop": "Trombay",
         "last_stop": "Dr Shyamaprasad Mukherji Chowk Or Museum",
-        "latitude": 19.046457,
-        "longitude": 72.893196,
-        "timestamp": 1793854079000,
-        "internal_id": "00iEUj2Pg2CAs"
+        "latitude": 19.045757,
+        "longitude": 72.90691,
+        "timestamp": 1793871469000,
+        "internal_id": "00iFvKYhIa7T0"
       }
     ]
   },
-  "786": {
-    "vehicle_number": "786",
+  "777": {
+    "vehicle_number": "777",
     "observations": [
       {
-        "vehicle_number": "786",
+        "vehicle_number": "777",
         "route_id": "uMVQOWLQ",
         "route_name": "A-21",
         "first_stop": "Trombay",
         "last_stop": "Dr Shyamaprasad Mukherji Chowk Or Museum",
-        "latitude": 19.046875,
-        "longitude": 72.86642,
-        "timestamp": 1793854077000,
-        "internal_id": "00iEMw7SF2OeI"
-      }
-    ]
-  },
-  "762": {
-    "vehicle_number": "762",
-    "observations": [
-      {
-        "vehicle_number": "762",
-        "route_id": "YTlGDpCL",
-        "route_name": "A-21",
-        "first_stop": "Dr Shyamaprasad Mukherji Chowk",
-        "last_stop": "Trombay",
-        "latitude": 19.04612,
-        "longitude": 72.91191,
-        "timestamp": 1793851825000,
-        "internal_id": "00iE3CtvcnQQL"
+        "latitude": 18.946466,
+        "longitude": 72.8353,
+        "timestamp": 1793871465000,
+        "internal_id": "00iFOqq5Z1cH4"
       }
     ]
   },
@@ -169,19 +147,67 @@ CONTENTS OF all_buses.json:
       }
     ]
   },
-  "783": {
-    "vehicle_number": "783",
+  "762": {
+    "vehicle_number": "762",
     "observations": [
       {
-        "vehicle_number": "783",
+        "vehicle_number": "762",
         "route_id": "YTlGDpCL",
         "route_name": "A-21",
         "first_stop": "Dr Shyamaprasad Mukherji Chowk",
         "last_stop": "Trombay",
-        "latitude": 18.93554,
-        "longitude": 72.83337,
-        "timestamp": 1793854078000,
-        "internal_id": "00iEZmYB8lThw"
+        "latitude": 19.047722,
+        "longitude": 72.89343,
+        "timestamp": 1793871425000,
+        "internal_id": "00iFSkKWaUERm"
+      }
+    ]
+  },
+  "819": {
+    "vehicle_number": "819",
+    "observations": [
+      {
+        "vehicle_number": "819",
+        "route_id": "YTlGDpCL",
+        "route_name": "A-21",
+        "first_stop": "Dr Shyamaprasad Mukherji Chowk",
+        "last_stop": "Trombay",
+        "latitude": 18.933186,
+        "longitude": 72.83143,
+        "timestamp": 1793871467000,
+        "internal_id": "00iFvRE348Jgg"
+      }
+    ]
+  },
+  "6911": {
+    "vehicle_number": "6911",
+    "observations": [
+      {
+        "vehicle_number": "6911",
+        "route_id": "YTlGDpCL",
+        "route_name": "A-21",
+        "first_stop": "Dr Shyamaprasad Mukherji Chowk",
+        "last_stop": "Trombay",
+        "latitude": 19.041754,
+        "longitude": 72.935776,
+        "timestamp": 1793871470000,
+        "internal_id": "00iFzf94vkXp4"
+      }
+    ]
+  },
+  "797": {
+    "vehicle_number": "797",
+    "observations": [
+      {
+        "vehicle_number": "797",
+        "route_id": "YTlGDpCL",
+        "route_name": "A-21",
+        "first_stop": "Dr Shyamaprasad Mukherji Chowk",
+        "last_stop": "Trombay",
+        "latitude": 19.034096,
+        "longitude": 72.94964,
+        "timestamp": 1793871466000,
+        "internal_id": "00iFxVB1Kmphh"
       }
     ]
   },
@@ -194,74 +220,42 @@ CONTENTS OF all_buses.json:
         "route_name": "A-21",
         "first_stop": "Dr Shyamaprasad Mukherji Chowk",
         "last_stop": "Trombay",
-        "latitude": 19.045923,
-        "longitude": 72.86522,
-        "timestamp": 1793854074000,
-        "internal_id": "00iEJXJGz66kb"
+        "latitude": 19.033525,
+        "longitude": 72.85913,
+        "timestamp": 1793871474000,
+        "internal_id": "00iFYhMwRjrpA"
       }
     ]
   },
-  "782": {
-    "vehicle_number": "782",
+  "6799": {
+    "vehicle_number": "6799",
     "observations": [
       {
-        "vehicle_number": "782",
-        "route_id": "YTlGDpCL",
-        "route_name": "A-21",
-        "first_stop": "Dr Shyamaprasad Mukherji Chowk",
-        "last_stop": "Trombay",
-        "latitude": 18.997738,
-        "longitude": 72.83718,
-        "timestamp": 1793854085000,
-        "internal_id": "00iEOS4Mm2o1A"
-      }
-    ]
-  },
-  "6738": {
-    "vehicle_number": "6738",
-    "observations": [
-      {
-        "vehicle_number": "6738",
+        "vehicle_number": "6799",
         "route_id": "mZZRrkjt",
         "route_name": "A-19",
         "first_stop": "Shivaji Nagar Bus Station",
         "last_stop": "Mantralaya",
-        "latitude": 18.92877,
-        "longitude": 72.82325,
-        "timestamp": 1793853402000,
-        "internal_id": "00iE41Z5CKM8v"
+        "latitude": 19.05348,
+        "longitude": 72.8836,
+        "timestamp": 1793871484000,
+        "internal_id": "00iFssQhzTwcT"
       }
     ]
   },
-  "6773": {
-    "vehicle_number": "6773",
+  "8830": {
+    "vehicle_number": "8830",
     "observations": [
       {
-        "vehicle_number": "6773",
+        "vehicle_number": "8830",
         "route_id": "mZZRrkjt",
         "route_name": "A-19",
         "first_stop": "Shivaji Nagar Bus Station",
         "last_stop": "Mantralaya",
-        "latitude": 19.061594,
-        "longitude": 72.900635,
-        "timestamp": 1793854088000,
-        "internal_id": "00iEVwmIHd5pw"
-      }
-    ]
-  },
-  "6789": {
-    "vehicle_number": "6789",
-    "observations": [
-      {
-        "vehicle_number": "6789",
-        "route_id": "mZZRrkjt",
-        "route_name": "A-19",
-        "first_stop": "Shivaji Nagar Bus Station",
-        "last_stop": "Mantralaya",
-        "latitude": 18.926018,
-        "longitude": 72.8317,
-        "timestamp": 1793854086000,
-        "internal_id": "00iE9rI2E7HZQ"
+        "latitude": 18.972185,
+        "longitude": 72.832794,
+        "timestamp": 1793871489000,
+        "internal_id": "00iFeBRbnSrVS"
       }
     ]
   },
@@ -270,78 +264,14 @@ CONTENTS OF all_buses.json:
     "observations": [
       {
         "vehicle_number": "6763",
-        "route_id": "mZZRrkjt",
-        "route_name": "A-19",
-        "first_stop": "Shivaji Nagar Bus Station",
-        "last_stop": "Mantralaya",
-        "latitude": 19.05405,
-        "longitude": 72.893486,
-        "timestamp": 1793854087000,
-        "internal_id": "00iEVXsSLMPuj"
-      }
-    ]
-  },
-  "6726": {
-    "vehicle_number": "6726",
-    "observations": [
-      {
-        "vehicle_number": "6726",
-        "route_id": "mZZRrkjt",
-        "route_name": "A-19",
-        "first_stop": "Shivaji Nagar Bus Station",
-        "last_stop": "Mantralaya",
-        "latitude": 19.023071,
-        "longitude": 72.85196,
-        "timestamp": 1793854086000,
-        "internal_id": "00iEKSLukW5T8"
-      }
-    ]
-  },
-  "6727": {
-    "vehicle_number": "6727",
-    "observations": [
-      {
-        "vehicle_number": "6727",
-        "route_id": "mZZRrkjt",
-        "route_name": "A-19",
-        "first_stop": "Shivaji Nagar Bus Station",
-        "last_stop": "Mantralaya",
-        "latitude": 19.058949,
-        "longitude": 72.91358,
-        "timestamp": 1793853952000,
-        "internal_id": "00iEYwTuosDp2"
-      }
-    ]
-  },
-  "6774": {
-    "vehicle_number": "6774",
-    "observations": [
-      {
-        "vehicle_number": "6774",
         "route_id": "JRqoMSDT",
         "route_name": "A-19",
         "first_stop": "Mantralaya",
         "last_stop": "Shivaji Nagar Bus Station",
-        "latitude": 19.067827,
-        "longitude": 72.9287,
-        "timestamp": 1793854090000,
-        "internal_id": "00iEVfzoBDYzi"
-      }
-    ]
-  },
-  "6744": {
-    "vehicle_number": "6744",
-    "observations": [
-      {
-        "vehicle_number": "6744",
-        "route_id": "JRqoMSDT",
-        "route_name": "A-19",
-        "first_stop": "Mantralaya",
-        "last_stop": "Shivaji Nagar Bus Station",
-        "latitude": 19.029552,
-        "longitude": 72.857285,
-        "timestamp": 1793854091000,
-        "internal_id": "00iEOdAVH5bNI"
+        "latitude": 19.066788,
+        "longitude": 72.92893,
+        "timestamp": 1793868194000,
+        "internal_id": "00iFAj4hbEKzi"
       }
     ]
   },
@@ -354,58 +284,26 @@ CONTENTS OF all_buses.json:
         "route_name": "A-19",
         "first_stop": "Mantralaya",
         "last_stop": "Shivaji Nagar Bus Station",
-        "latitude": 19.067793,
-        "longitude": 72.92923,
-        "timestamp": 1793854087000,
-        "internal_id": "00iECGhJ6ONzV"
+        "latitude": 19.067707,
+        "longitude": 72.92949,
+        "timestamp": 1793871450000,
+        "internal_id": "00iFOsjV5TuAj"
       }
     ]
   },
-  "6750": {
-    "vehicle_number": "6750",
+  "6722": {
+    "vehicle_number": "6722",
     "observations": [
       {
-        "vehicle_number": "6750",
+        "vehicle_number": "6722",
         "route_id": "JRqoMSDT",
         "route_name": "A-19",
         "first_stop": "Mantralaya",
         "last_stop": "Shivaji Nagar Bus Station",
-        "latitude": 19.054272,
-        "longitude": 72.89121,
-        "timestamp": 1793854085000,
-        "internal_id": "00iELdsfOh2kD"
-      }
-    ]
-  },
-  "1011W": {
-    "vehicle_number": "1011W",
-    "observations": [
-      {
-        "vehicle_number": "1011W",
-        "route_id": "slLHPyTi",
-        "route_name": "A-318",
-        "first_stop": "Kurla Bus Station West",
-        "last_stop": "Santacruz Station East",
-        "latitude": 19.074524,
-        "longitude": 72.87149,
-        "timestamp": 1793854075000,
-        "internal_id": "00iEbinF8Poci"
-      }
-    ]
-  },
-  "1007W": {
-    "vehicle_number": "1007W",
-    "observations": [
-      {
-        "vehicle_number": "1007W",
-        "route_id": "lWTHVqGz",
-        "route_name": "A-318",
-        "first_stop": "Santacruz Station East",
-        "last_stop": "Kurla Bus Station West",
-        "latitude": 19.071474,
-        "longitude": 72.8621,
-        "timestamp": 1793853986000,
-        "internal_id": "00iEVRHMHjFtA"
+        "latitude": 18.993353,
+        "longitude": 72.83641,
+        "timestamp": 1793871490000,
+        "internal_id": "00iFjKWjD1i1i"
       }
     ]
   }

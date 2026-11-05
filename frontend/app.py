@@ -10,6 +10,8 @@ from argon2 import PasswordHasher
 from argon2.exceptions import VerifyMismatchError, VerificationError
 from dotenv import load_dotenv
 from sqlalchemy.exc import IntegrityError
+from sqlalchemy import text
+
 
 BASE_DIR = Path(__file__).resolve().parent
 ROUTES_FILE = BASE_DIR / "all_buses.json"
@@ -193,7 +195,7 @@ def generate_routes_status():
     return jsonify({"state": "completed"})
 
 
-@app.get("/api/routes")
+"""@app.get("/api/routes")
 def get_routes():
     if "user_id" not in session:
         return jsonify({"error": "Login required"}), 401
@@ -216,7 +218,48 @@ def get_routes():
     except (OSError, ValueError, TypeError, AttributeError):
         app.logger.exception("Unable to load routes")
         return jsonify({"error": "Unable to load routes"}), 500
+"""
+@app.route("/api/routes", methods=["GET"])
+def get_routes():
+    if "user_id" not in session:
+        return jsonify({"error": "Login required"}), 401
+    try:       
+        with ROUTES_FILE.open("r", encoding="utf-8") as file:
+            data = json.load(file)        
+        rating_rows = db.session.execute(text("""SELECT vehicle_number, average_rating, rated_review_count
+            FROM bus_average_ratings""")).mappings().all()
+        ratings = {
+            str(row["vehicle_number"]).strip().upper(): {
+                "average_rating": (
+                    float(row["average_rating"])
+                    if row["average_rating"] is not None
+                    else None
+                ),
+                "rated_review_count": row["rated_review_count"]
+            }
+            for row in rating_rows        }
+        buses = []
+        for vehicle_number, vehicle_data in data.items():
+            observations = vehicle_data.get("observations", [])
+            if not observations:
+                continue
+            latest = max(observations,key=lambda obs: obs.get("timestamp") or 0)
+            number = str(vehicle_data.get("vehicle_number", vehicle_number)).strip().upper()
+            rating_info = ratings.get(number, {"average_rating": None,"rated_review_count": 0})
+            buses.append({
+                "route_name": latest.get("route_name"),
+                "first_stop": latest.get("first_stop"),
+                "last_stop": latest.get("last_stop"),
+                "vehicle_number": number,
+                "average_rating": rating_info["average_rating"],
+                "rated_review_count": rating_info["rated_review_count"]
+            })
+        return jsonify(buses)    
+    except (OSError, ValueError, TypeError, AttributeError):
+         app.logger.exception("Unable to load routes")
+         return jsonify({"error": "Unable to load routes"}), 500
 
+    
 
 if __name__ == "__main__":    
     app.run(debug=True, use_reloader=False)

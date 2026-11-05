@@ -45,6 +45,7 @@
                             <th>Starting Point</th>
                             <th>Ending Point</th>
                             <th>Bus Number</th>
+			    <th>Bus Rating</th>
                         </tr>
                     </thead>
                     <tbody id="routesTableBody"></tbody>
@@ -78,7 +79,9 @@
             routesTableBody.replaceChildren();
             for (const bus of buses) {
                 const row = document.createElement("tr");
-                for (const value of [bus.route_name, bus.first_stop, bus.last_stop, bus.vehicle_number]) {
+                for (const value of [bus.route_name, bus.first_stop, bus.last_stop, bus.vehicle_number, bus.average_rating !== null
+        ? `★ ${bus.average_rating.toFixed(2)} / 5 (${bus.rated_review_count} reviews)`
+        : "Not rated" ]) {
                     const cell = document.createElement("td");
                     cell.textContent = value ?? "—";
                     row.appendChild(cell);
