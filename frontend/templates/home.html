@@ -37,6 +37,7 @@
         <section id="routesSection" hidden>
             <h2>Mumbai BEST Buses</h2>
             <button id="toggleRoutesBtn" type="button" aria-expanded="true">Hide Routes</button>
+	    <button id="refreshRoutesBtn" hidden>Refresh Routes</button>
             <div id="routesTableWrapper" style="overflow-x:auto;">
                 <table class="routes-table">
                     <thead>
@@ -61,6 +62,7 @@
         const routesTableBody = document.getElementById("routesTableBody");
         const routesTableWrapper = document.getElementById("routesTableWrapper");
         const toggleRoutesBtn = document.getElementById("toggleRoutesBtn");
+	const refreshRoutesBtn = document.getElementById("refreshRoutesBtn");
 
         const sleep = (ms) => new Promise(resolve => setTimeout(resolve, ms));
 
@@ -90,6 +92,10 @@
             }
             routesSection.hidden = false;
             routesTableWrapper.hidden = false;
+	    
+            toggleRoutesBtn.hidden = false;
+            refreshRoutesBtn.hidden = false; // NEW
+	
             toggleRoutesBtn.textContent = "Hide Routes";
             toggleRoutesBtn.setAttribute("aria-expanded", "true");
         }
@@ -122,6 +128,26 @@
             }
         });
 
+
+    refreshRoutesBtn.addEventListener("click", async () => {
+    refreshRoutesBtn.disabled = true;
+    try {
+        const response = await fetch("/api/routes", {
+            cache: "no-store"
+        });
+        if (!response.ok) {
+            throw new Error("Unable to fetch routes");
+        }
+        const data = await response.json();
+        renderBuses(data.buses ?? data);
+    } catch (error) {
+        console.error(error);
+        alert("Failed to refresh routes.");
+    } finally {
+        refreshRoutesBtn.disabled = false;
+        refreshRoutesBtn.textContent = "Refresh Routes";
+    }
+});
         toggleRoutesBtn.addEventListener("click", () => {
             routesTableWrapper.hidden = !routesTableWrapper.hidden;
             const visible = !routesTableWrapper.hidden;
