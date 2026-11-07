@@ -14,5 +14,6 @@ docker exec -i lokbus-postgres psql -U lokbus -d lokbus -v ON_ERROR_STOP=1 -c "\
 docker exec -i lokbus-postgres psql -U lokbus -d lokbus -v ON_ERROR_STOP=1 < 05_users.sql
 docker exec -i lokbus-postgres psql -U lokbus -d lokbus -v ON_ERROR_STOP=1 < 03_load.sql
 docker exec -i lokbus-postgres psql -U lokbus -d lokbus -v ON_ERROR_STOP=1 < 06_identity_review_ratings.sql
+docker exec -i lokbus-postgres psql -U lokbus -d lokbus -v ON_ERROR_STOP=1 < 07_display_assignments.sql
 
 docker exec -it lokbus-postgres psql -U lokbus -d lokbus -c "SELECT 'buses' AS table_name, COUNT(*) FROM buses UNION ALL SELECT 'routes', COUNT(*) FROM routes UNION ALL SELECT 'reviews', COUNT(*) FROM reviews;"
