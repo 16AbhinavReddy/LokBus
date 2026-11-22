@@ -162,14 +162,14 @@ def generate_routes():
     if "user_id" not in session:
         return jsonify({"error": "Login required"}), 401
 
-    with collection_lock: 
+    with collection_lock:
         if not SOURCE_ROUTES_FILE.is_file():
             return jsonify({"error": "mumbai_routes.json not found in frontend/"}), 404
         if not COLLECTOR_FILE.is_file():
             return jsonify({"error": "busnroute.py not found in frontend/"}), 404
 
         try:
-            
+
             ROUTES_FILE.unlink(missing_ok=True)
             (BASE_DIR / "all_bus_observations.json").unlink(missing_ok=True)
             with COLLECTION_LOG.open("w", encoding="utf-8") as log:
@@ -200,107 +200,73 @@ def generate_routes_status():
 
 
 def allocate_display_staff(buses, service_date):
+    """Return stable, one-to-one staff mappings for displayed vehicles.
+
+    The existing table is keyed by service_date and vehicle. A fixed key keeps
+    these display mappings stable between days and route fetches.
+    """
     if not buses:
         return {}
-    # Serialize concurrent allocation requests.
-    db.session.execute(text("SELECT pg_advisory_xact_lock(740699)"))    
+    mapping_date = date(2000, 1, 1)
+    db.session.execute(text("SELECT pg_advisory_xact_lock(740699)"))
+    # This table was added after the original database setup. Create it here as
+    # well as in db/07_display_assignments.sql so existing installations can
+    # serve routes without requiring a destructive database reinitialization.
+    db.session.execute(text("""
+        CREATE TABLE IF NOT EXISTS display_staff_assignments (
+            service_date DATE NOT NULL,
+            vehicle_number TEXT NOT NULL REFERENCES buses(vehicle_number),
+            driver_id TEXT NOT NULL REFERENCES drivers(driver_id),
+            conductor_id TEXT NOT NULL REFERENCES conductors(conductor_id),
+            driver_is_fallback BOOLEAN NOT NULL DEFAULT FALSE,
+            conductor_is_fallback BOOLEAN NOT NULL DEFAULT FALSE,
+            PRIMARY KEY (service_date, vehicle_number),
+            UNIQUE (service_date, driver_id),
+            UNIQUE (service_date, conductor_id)
+        )
+    """))
     for bus in buses:
-        db.session.execute(text("""INSERT INTO buses (vehicle_number) VALUES (:vehicle_number) ON CONFLICT (vehicle_number) DO NOTHING"""),
-            {"vehicle_number": bus["vehicle_number"]})
-    db.session.flush()
-    # Already saved assignments for this date.
-    saved_rows = db.session.execute(text("""SELECT vehicle_number, driver_id, conductor_id, driver_is_fallback, conductor_is_fallback FROM display_staff_assignments WHERE service_date = :service_date"""),
-        {"service_date": service_date}).mappings().all()
-    saved = {row["vehicle_number"]: dict(row) for row in saved_rows}
+        db.session.execute(text("INSERT INTO buses(vehicle_number) VALUES (:v) ON CONFLICT DO NOTHING"), {"v": bus["vehicle_number"]})
+
+    saved_rows = db.session.execute(text("SELECT vehicle_number,driver_id,conductor_id,driver_is_fallback,conductor_is_fallback FROM display_staff_assignments WHERE service_date=:d"), {"d": mapping_date}).mappings().all()
+    assignments = {row["vehicle_number"]: dict(row) for row in saved_rows}
     used_drivers = {row["driver_id"] for row in saved_rows}
     used_conductors = {row["conductor_id"] for row in saved_rows}
-    current_rows = db.session.execute(text(""" SELECT vehicle_number, driver_id, conductor_id FROM service_assignments WHERE service_date = :service_date ORDER BY vehicle_number"""),{"service_date": service_date}).mappings().all()
-    reserved_drivers = {row["driver_id"] for row in current_rows if row["driver_id"] is not None}
-    reserved_conductors = { row["conductor_id"] for row in current_rows if row["conductor_id"] is not None}
-    drivers = [ dict(row) for row in db.session.execute(text("""SELECT driver_id, driver_name FROM drivers WHERE driver_id NOT LIKE 'SIM_DRIVER_%' ORDER BY driver_id""")).mappings().all()]
-    conductors = [dict(row) for row in db.session.execute(text("""SELECT conductor_id, conductor_name FROM conductors WHERE conductor_id NOT LIKE 'SIM_CONDUCTOR_%' ORDER BY conductor_id""")).mappings().all()]
-    driver_ids = {d["driver_id"] for d in drivers}
-    conductor_ids = {c["conductor_id"] for c in conductors}
-    # Recorded assignments, ordered by date and route match.
-    recorded_rows = db.session.execute(text("""SELECT sa.vehicle_number, sa.driver_id, sa.conductor_id, sa.service_date, rt.route_name FROM service_assignments sa JOIN routes rt ON rt.route_id = sa.route_id WHERE sa.service_date <= :service_date ORDER BY sa.vehicle_number, sa.service_date DESC, sa.assignment_id DESC"""),{"service_date": service_date}).mappings().all()
-    recorded = {}
-    for row in recorded_rows:
-        recorded.setdefault(row["vehicle_number"], []).append(dict(row))
-    new_buses = sorted([bus for bus in buses if bus["vehicle_number"] not in saved],key=lambda b: b["vehicle_number"])
-    pending = {}
-    for bus in new_buses:
-        number = bus["vehicle_number"]
-        route_name = bus.get("route_name")
-        candidates = recorded.get(number, [])
-        candidates = sorted(candidates,key=lambda r: (r["service_date"] == service_date,r["route_name"] == route_name),reverse=True)
-        driver_id = None
-        conductor_id = None
-        for candidate in candidates:
-            candidate_driver = candidate["driver_id"]
-            candidate_conductor = candidate["conductor_id"]
-            driver_reserved_elsewhere = (candidate["service_date"] != service_date and candidate_driver in reserved_drivers)
-            conductor_reserved_elsewhere = (candidate["service_date"] != service_date and candidate_conductor in reserved_conductors)
-            if (driver_id is None and candidate_driver in driver_ids and candidate_driver not in used_drivers and not driver_reserved_elsewhere):
-                driver_id = candidate_driver
-                used_drivers.add(driver_id)
-            if (conductor_id is None and candidate_conductor in conductor_ids and candidate_conductor not in used_conductors and not conductor_reserved_elsewhere):
-                conductor_id = candidate_conductor
-                used_conductors.add(conductor_id)
-            if driver_id and conductor_id:
-                break
-        pending[number] = {
-            "driver_id": driver_id,
-            "conductor_id": conductor_id,
-            "driver_is_fallback": driver_id is None,
-            "conductor_is_fallback": conductor_id is None
-        }
-    available_drivers = [ d["driver_id"] for d in drivers if d["driver_id"] not in used_drivers and d["driver_id"] not in reserved_drivers]
-    available_conductors = [ c["conductor_id"] for c in conductors if c["conductor_id"] not in used_conductors and c["conductor_id"] not in reserved_conductors]
-    random.shuffle(available_drivers)
-    random.shuffle(available_conductors)
-    for number, assignment in pending.items():
-        if assignment["driver_id"] is None:
-            if available_drivers:
-                assignment["driver_id"] = available_drivers.pop()
-            else:                
-                token = hashlib.sha256(f"{service_date}:{number}".encode()).hexdigest()[:24] 
-                simulated_id = f"SIM_DRIVER_{token}"
-                db.session.execute(text("""INSERT INTO drivers (driver_id, driver_name) VALUES (:driver_id, :driver_name) ON CONFLICT (driver_id) DO NOTHING"""),{
-                        "driver_id": simulated_id,
-                        "driver_name": f"Simulated Driver ({number})"
-                    }
-                )
-                assignment["driver_id"] = simulated_id
-        if assignment["conductor_id"] is None:
-            if available_conductors:
-                assignment["conductor_id"] = available_conductors.pop()
-            else:
-                token = hashlib.sha256(f"{service_date}:{number}".encode()).hexdigest()[:24]
-                simulated_id = f"SIM_CONDUCTOR_{token}"
-                db.session.execute(text("""INSERT INTO conductors (conductor_id, conductor_name) VALUES (:conductor_id, :conductor_name) ON CONFLICT (conductor_id) DO NOTHING"""),
-                    {
-                        "conductor_id": simulated_id,
-                        "conductor_name": f"Simulated Conductor ({number})"
-                    }
-                )
-                assignment["conductor_id"] = simulated_id
-                db.session.execute(text("""INSERT INTO display_staff_assignments ( service_date, vehicle_number, driver_id, conductor_id, driver_is_fallback, conductor_is_fallback) VALUES (:service_date, :vehicle_number, :driver_id, :conductor_id, :driver_is_fallback, :conductor_is_fallback) ON CONFLICT (service_date, vehicle_number) DO NOTHING"""), {
-                "service_date": service_date,
-                "vehicle_number": number,
-                **assignment
-            }
-        )
+    drivers = db.session.execute(text("SELECT driver_id FROM drivers WHERE driver_id NOT LIKE 'SIM_DRIVER_%' ORDER BY random()")).scalars().all()
+    conductors = db.session.execute(text("SELECT conductor_id FROM conductors WHERE conductor_id NOT LIKE 'SIM_CONDUCTOR_%' ORDER BY random()")).scalars().all()
+
+    # Prefer an existing recorded person for this vehicle if still unassigned.
+    history = db.session.execute(text("SELECT DISTINCT ON (vehicle_number) vehicle_number,driver_id,conductor_id FROM service_assignments WHERE driver_id IS NOT NULL OR conductor_id IS NOT NULL ORDER BY vehicle_number,service_date DESC,assignment_id DESC")).mappings().all()
+    history_by_bus = {row["vehicle_number"]: row for row in history}
+    for bus in sorted(buses, key=lambda item: item["vehicle_number"]):
+        vehicle = bus["vehicle_number"]
+        if vehicle in assignments:
+            continue
+        prior = history_by_bus.get(vehicle, {})
+        driver_id = prior.get("driver_id") if prior.get("driver_id") not in used_drivers else None
+        conductor_id = prior.get("conductor_id") if prior.get("conductor_id") not in used_conductors else None
+        if driver_id is None:
+            driver_id = next((candidate for candidate in drivers if candidate not in used_drivers), None)
+        if conductor_id is None:
+            conductor_id = next((candidate for candidate in conductors if candidate not in used_conductors), None)
+        if driver_id is None or conductor_id is None:
+            raise RuntimeError("The database does not have enough unique drivers and conductors for the active buses.")
+        used_drivers.add(driver_id)
+        used_conductors.add(conductor_id)
+        row = {"vehicle_number": vehicle, "driver_id": driver_id, "conductor_id": conductor_id,
+               "driver_is_fallback": False, "conductor_is_fallback": False}
+        db.session.execute(text("INSERT INTO display_staff_assignments(service_date,vehicle_number,driver_id,conductor_id,driver_is_fallback,conductor_is_fallback) VALUES (:d,:vehicle_number,:driver_id,:conductor_id,FALSE,FALSE)"), {"d": mapping_date, **row})
+        assignments[vehicle] = row
     db.session.commit()
-    result_rows = db.session.execute(text("""SELECT vehicle_number, driver_id, conductor_id, driver_is_fallback, conductor_is_fallback FROM display_staff_assignments WHERE service_date = :service_date"""),{"service_date": service_date}).mappings().all()
-    return {row["vehicle_number"]: dict(row) for row in result_rows}
+    return assignments
 
 @app.route("/api/routes", methods=["GET"])
 def get_routes():
     if "user_id" not in session:
         return jsonify({"error": "Login required"}), 401
-    try:       
+    try:
         with ROUTES_FILE.open("r", encoding="utf-8") as file:
-            data = json.load(file)        
+            data = json.load(file)
         rating_rows = db.session.execute(text("""SELECT vehicle_number, average_rating, rated_review_count
             FROM bus_average_ratings""")).mappings().all()
         ratings = {
@@ -342,12 +308,13 @@ def get_routes():
             "rated_review_count": driver.get("rated_review_count", 0),"is_fallback": assignment.get("driver_is_fallback", False)}
             bus["conductor"] = {"conductor_id": assignment.get("conductor_id"),"conductor_name": conductor.get("conductor_name"),"average_rating": (float(conductor["average_rating"]) if conductor.get("average_rating") is not None else None
             ),"rated_review_count": conductor.get("rated_review_count", 0),"is_fallback": assignment.get("conductor_is_fallback", False)}
-        return jsonify(buses)    
-    except (OSError, ValueError, TypeError, AttributeError):
+        return jsonify(buses)
+    except (OSError, ValueError, TypeError, AttributeError, RuntimeError):
+         db.session.rollback()
          app.logger.exception("Unable to load routes")
          return jsonify({"error": "Unable to load routes"}), 500
 
-    
 
-if __name__ == "__main__":    
+
+if __name__ == "__main__":
     app.run(debug=True, use_reloader=False)
