@@ -11,7 +11,14 @@ root_dir = Path(__file__).resolve().parent.parent
 analysis_dir = root_dir / "analysis"
 output_dir = Path(__file__).resolve().parent / "generated"
 db_url = os.getenv("ANALYTICS_db_url","postgresql+psycopg://lokbus:lokbus_dev@localhost:5432/lokbus")
-report_config = {"Bus maintenance": ("bus_maintainence_analysis.py","bus_maintenance.csv"),"Driving": ("driving_analysis.py", "driving.csv"), "Crowding by route": ("crowding_analyis.py", "crowding.csv"), "Ticket handling": ("ticket_handling_analysis.py", "ticket_handling.csv")}
+report_config = {
+    "Bus maintenance": ("bus_maintainence_analysis.py", "bus_maintenance.csv"),
+    "Driving": ("driving_analysis.py", "driving.csv"),
+    "Crowding by route": ("crowding_analyis.py", "crowding.csv"),
+    "Ticket handling": ("ticket_handling_analysis.py", "ticket_handling.csv"),
+    "Disruptions": ("disruptions_analysis.py", "disruptions.csv"),
+    "Monthly worst routes": ("monthly_negative_reviews_analysis.py", "monthly_negative_routes.csv"),
+}
 
 app = Flask(__name__)
 
@@ -19,7 +26,7 @@ def read_csv(path):
     if not path.exists():
         return []
     with path.open(newline="", encoding="utf-8") as file:
-        return list(csv.DictReader(file))[:20]
+        return list(csv.DictReader(file))
 
 def get_reports():
     report_data = {}
@@ -102,4 +109,4 @@ def api_refresh():
         return jsonify({"error": ("Refresh failed. Check the PostgreSQL connection, SQL query, analysis scripts, and server log.")}), 500
 
 if __name__ == "__main__":
-    app.run(port=5050, debug=False)
+    app.run(port=5050, debug=True)

@@ -50,6 +50,7 @@ button:disabled {
 
 .report {
     overflow: auto;
+    max-height: 500px;
     padding: 16px;
     border: 1px solid #ddd;
     border-radius: 6px;
@@ -78,6 +79,9 @@ th, td {
 }
 
 th {
+    position: sticky;
+    top: 0;
+    background: white;
     color: #59645c; 
 }
 

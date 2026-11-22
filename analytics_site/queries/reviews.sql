@@ -1,4 +1,5 @@
 SELECT c.category_name AS category, r.sentiment,
+       a.service_date,
        a.vehicle_number AS assigned_vehicle_number,
        a.route_id AS assigned_route_id, rt.route_name AS assigned_route_name,
        a.conductor_id, cnd.conductor_name,
