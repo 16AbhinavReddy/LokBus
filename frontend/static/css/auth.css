@@ -3,13 +3,11 @@
     padding: 0;
     box-sizing: border-box;
 }
-
 body {
     font-family: Arial, sans-serif;
     background: linear-gradient(135deg, #e0edff, #f5f8ff);
     min-height: 100vh;
 }
-
 .auth-container {
     min-height: 100vh;
 
@@ -19,7 +17,6 @@ body {
 
     padding: 30px 20px;
 }
-
 .auth-card {
     background: white;
 
@@ -32,7 +29,6 @@ body {
 
     box-shadow: 0 10px 35px rgba(0, 0, 0, 0.09);
 }
-
 .logo {
     text-align: center;
 
@@ -43,13 +39,11 @@ body {
 
     margin-bottom: 30px;
 }
-
 .auth-card h2 {
     text-align: center;
     font-size: 24px;
     margin-bottom: 10px;
 }
-
 .subtitle {
     text-align: center;
 
@@ -58,11 +52,9 @@ body {
 
     margin-bottom: 30px;
 }
-
 .form-group {
     margin-bottom: 20px;
 }
-
 .form-group label {
     display: block;
 
@@ -71,7 +63,6 @@ body {
 
     margin-bottom: 8px;
 }
-
 .form-group input {
     width: 100%;
 
@@ -86,11 +77,9 @@ body {
 
     transition: border-color 0.2s;
 }
-
 .form-group input:focus {
     border-color: #2563eb;
 }
-
 .auth-button {
     width: 100%;
 
@@ -109,16 +98,13 @@ body {
 
     margin-top: 10px;
 }
-
 .auth-button:hover {
     background: #1d4ed8;
 }
-
 .auth-button:disabled {
     opacity: 0.6;
     cursor: not-allowed;
 }
-
 .auth-footer {
     text-align: center;
 
@@ -127,31 +113,25 @@ body {
     font-size: 14px;
     color: #666;
 }
-
 .auth-footer a {
     color: #2563eb;
     text-decoration: none;
     font-weight: bold;
 }
-
 .auth-footer a:hover {
     text-decoration: underline;
 }
-
 .message {
     text-align: center;
     font-size: 14px;
     margin: 12px 0;
 }
-
 .message.error {
     color: #dc2626;
 }
-
 .message.success {
     color: #16a34a;
 }
-
 @media (max-width: 480px) {
     .auth-card {
         padding: 30px 22px;

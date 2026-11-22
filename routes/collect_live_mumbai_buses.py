@@ -1,4 +1,3 @@
-
 import asyncio
 import csv
 import json
@@ -6,23 +5,19 @@ import time
 from datetime import datetime
 from pathlib import Path
 from zoneinfo import ZoneInfo
-
 from playwright.async_api import async_playwright, TimeoutError as PWTimeout
 
 
 CITY = "mumbai"
-ROUTES_FILE = Path("mumbai_routes.json") #Must have the json file in the sme location as this python script 
+ROUTES_FILE = Path("mumbai_routes.json") 
 OUTPUT_CSV = Path("mumbai_buses_last_hour.csv")
 OUTPUT_JSON = Path("mumbai_buses_last_hour.json")
-
 CONCURRENCY = 3
 TIMEOUT_MS = 12000
 MAX_PREV_SECONDS = 3600
-
 IST = ZoneInfo("Asia/Kolkata")
 def parse_buses(data, route):
     results = []
-
     for internal_id, raw in data.get("routeLiveInfo", {}).items():
         try:
             bus = json.loads(raw) if isinstance(raw, str) else raw
@@ -58,22 +53,17 @@ def format_timestamp(timestamp):
 
 def save_results(index):
     buses = []
-
     for bus in sorted(index.values(), key=lambda x: x["bus_number"]):
         row = bus.copy()
         row["last_updated_ist"] = format_timestamp(row["timestamp"])
         buses.append(row)
-
     OUTPUT_JSON.write_text(json.dumps(buses, indent=2),encoding="utf-8")
-
     if buses:
         with OUTPUT_CSV.open("w", newline="", encoding="utf-8") as f:
             writer = csv.DictWriter(f, fieldnames=buses[0].keys())
             writer.writeheader()
             writer.writerows(buses)
-
     return buses
-
 
 async def fetch_route(context, route, semaphore):
     async with semaphore:
@@ -98,39 +88,32 @@ async def fetch_route(context, route, semaphore):
 async def main():
     with ROUTES_FILE.open(encoding="utf-8") as f:
         loaded = json.load(f)
-
     routes = list({route["route_id"]: route for route in loaded if route.get("route_id")}.values())
-    async with async_playwright() as p:
-        browser = await p.chromium.launch(headless=False)
+
+    async with async_playwright() as spw:
+        browser = await spw.chromium.launch(headless=False)
         context = await browser.new_context()
         login_page = await context.new_page()
-        await login_page.goto("https://chalo.com/app",wait_until="commit",timeout=60000)
-        print("Complete OTP login in the browser.")
+        await login_page.goto("https://chalo.com/app",wait_until="commit",timeout=60000)        
         city_search = login_page.locator('input[placeholder="Search city"]')
         await city_search.wait_for(state="visible",timeout=180000)
         await city_search.fill("Mumbai")
-        await login_page.get_by_text("Mumbai",exact=True).first.click(timeout=15000)
-        print("Mumbai selected. Starting concurrent collection.")
+        await login_page.get_by_text("Mumbai",exact=True).first.click(timeout=15000)        
         now_ms = int(time.time() * 1000)
         semaphore = asyncio.Semaphore(CONCURRENCY)
         tasks = [fetch_route(context, route, semaphore) for route in routes]
         responses = await asyncio.gather(*tasks)
-
         index = {}
         successes = 0
         failures = 0
-
         for observations, success in responses:
             update_index(index, observations, now_ms)
             if success:
                 successes += 1
             else:
                 failures += 1
-
         buses = save_results(index)        
         await browser.close()
 
-
-if __name__ == "__main__":
-    asyncio.run(main())
+asyncio.run(main())
 

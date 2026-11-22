@@ -60,7 +60,6 @@ def register():
     username = data.get("username", "").strip()
     email = data.get("email", "").strip().lower()
     password = data.get("password", "")
-
     if not all([full_name, username, email, password]):
         return jsonify({"error": "All fields are required"}), 400
     if len(password) < 12:
@@ -161,15 +160,12 @@ def generate_routes():
     global collection_process
     if "user_id" not in session:
         return jsonify({"error": "Login required"}), 401
-
     with collection_lock:
         if not SOURCE_ROUTES_FILE.is_file():
             return jsonify({"error": "mumbai_routes.json not found in frontend/"}), 404
         if not COLLECTOR_FILE.is_file():
             return jsonify({"error": "busnroute.py not found in frontend/"}), 404
-
         try:
-
             ROUTES_FILE.unlink(missing_ok=True)
             (BASE_DIR / "all_bus_observations.json").unlink(missing_ok=True)
             with COLLECTION_LOG.open("w", encoding="utf-8") as log:
@@ -200,18 +196,10 @@ def generate_routes_status():
 
 
 def allocate_display_staff(buses, service_date):
-    """Return stable, one-to-one staff mappings for displayed vehicles.
-
-    The existing table is keyed by service_date and vehicle. A fixed key keeps
-    these display mappings stable between days and route fetches.
-    """
     if not buses:
         return {}
     mapping_date = date(2000, 1, 1)
     db.session.execute(text("SELECT pg_advisory_xact_lock(740699)"))
-    # This table was added after the original database setup. Create it here as
-    # well as in db/07_display_assignments.sql so existing installations can
-    # serve routes without requiring a destructive database reinitialization.
     db.session.execute(text("""
         CREATE TABLE IF NOT EXISTS display_staff_assignments (
             service_date DATE NOT NULL,
@@ -227,15 +215,12 @@ def allocate_display_staff(buses, service_date):
     """))
     for bus in buses:
         db.session.execute(text("INSERT INTO buses(vehicle_number) VALUES (:v) ON CONFLICT DO NOTHING"), {"v": bus["vehicle_number"]})
-
     saved_rows = db.session.execute(text("SELECT vehicle_number,driver_id,conductor_id,driver_is_fallback,conductor_is_fallback FROM display_staff_assignments WHERE service_date=:d"), {"d": mapping_date}).mappings().all()
     assignments = {row["vehicle_number"]: dict(row) for row in saved_rows}
     used_drivers = {row["driver_id"] for row in saved_rows}
     used_conductors = {row["conductor_id"] for row in saved_rows}
     drivers = db.session.execute(text("SELECT driver_id FROM drivers WHERE driver_id NOT LIKE 'SIM_DRIVER_%' ORDER BY random()")).scalars().all()
     conductors = db.session.execute(text("SELECT conductor_id FROM conductors WHERE conductor_id NOT LIKE 'SIM_CONDUCTOR_%' ORDER BY random()")).scalars().all()
-
-    # Prefer an existing recorded person for this vehicle if still unassigned.
     history = db.session.execute(text("SELECT DISTINCT ON (vehicle_number) vehicle_number,driver_id,conductor_id FROM service_assignments WHERE driver_id IS NOT NULL OR conductor_id IS NOT NULL ORDER BY vehicle_number,service_date DESC,assignment_id DESC")).mappings().all()
     history_by_bus = {row["vehicle_number"]: row for row in history}
     for bus in sorted(buses, key=lambda item: item["vehicle_number"]):

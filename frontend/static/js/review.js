@@ -1,7 +1,6 @@
 const form = document.getElementById("reviewForm");
 const bus_list = document.getElementById("reviewBus");
 const status = document.getElementById("reviewStatus");
-
 async function loadBuses() {
     try {
         const response = await fetch("/api/routes");
@@ -13,13 +12,11 @@ async function loadBuses() {
         bus_list.replaceChildren(new Option("Choose an operating bus", ""));
         for (let i = 0; i < buses.length; i++) {
             let bus = buses[i];
-
             if (bus.route_name && bus.vehicle_number) {
                 let option = new Option(
                     bus.vehicle_number + " — Route " + bus.route_name,
                     bus.vehicle_number
                 );
-
                 bus_list.add(option);
             }
         }
@@ -31,7 +28,6 @@ async function loadBuses() {
         status.textContent = error.message;
     }
 }
-
 form.addEventListener("submit", async event => {
     event.preventDefault();
     const button = document.getElementById("submitReviewBtn");
@@ -62,12 +58,10 @@ form.addEventListener("submit", async event => {
         button.disabled = false;
     }
 });
-
 document.getElementById("logoutBtn").addEventListener("click", async () => {
     const response = await fetch("/logout", { method: "POST" });
     if (response.ok) {
         window.location.assign("/login-page");
     }
 });
-
 loadBuses();

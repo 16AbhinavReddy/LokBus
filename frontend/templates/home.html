@@ -11,7 +11,6 @@
         <h2>LokBus</h2>
         <button id="logoutBtn">Logout</button>
     </nav>
-
     <main class="container">
         <h1>Welcome to LokBus</h1>
         <p>What would you like to do?</p>
@@ -32,7 +31,6 @@
                 <a href="/review-page" class="button">Write a Review</a>
             </div>
         </div>
-
         <p id="statusMessage" role="status" aria-live="polite"></p>
         <section id="routesSection" hidden>
             <h2>Mumbai BEST Buses</h2>
@@ -46,7 +44,7 @@
                             <th>Starting Point</th>
                             <th>Ending Point</th>
                             <th>Bus Number</th>
-			                <th>Bus Rating</th>
+			    <th>Bus Rating</th>
                             <th>Driver Rating</th>
                             <th>Conductor Rating</th>
                         </tr>
@@ -56,7 +54,6 @@
             </div>
         </section>
     </main>
-
     <script>
         const findRoutesBtn = document.getElementById("findRoutesBtn");
         const statusMessage = document.getElementById("statusMessage");
@@ -64,10 +61,8 @@
         const routesTableBody = document.getElementById("routesTableBody");
         const routesTableWrapper = document.getElementById("routesTableWrapper");
         const toggleRoutesBtn = document.getElementById("toggleRoutesBtn");
-	    const refreshRoutesBtn = document.getElementById("refreshRoutesBtn");
-
+	const refreshRoutesBtn = document.getElementById("refreshRoutesBtn");
         const sleep = (ms) => new Promise(resolve => setTimeout(resolve, ms));
-
         async function getJSON(url, options = {}) {
             const response = await fetch(url, {credentials: "same-origin", ...options});
             if (response.status === 401) {
@@ -78,20 +73,13 @@
             if (!response.ok) throw new Error(data.error || "Request failed");
             return data;
         }
-
         function renderBuses(buses) {
             routesTableBody.replaceChildren();
             for (const bus of buses) {
                 const row = document.createElement("tr");
-                for (const value of [bus.route_name, bus.first_stop, bus.last_stop, bus.vehicle_number, bus.average_rating !== null
-        ? `★ ${bus.average_rating.toFixed(2)} / 5 (${bus.rated_review_count} reviews)`
-        : "Not rated" , 
-        bus.driver?.average_rating != null
-        ? `★ ${Number(bus.driver.average_rating).toFixed(2)} / 5 (${bus.driver.rated_review_count} reviews)`
-        : "Not rated",
-        bus.conductor?.average_rating != null
-        ? `★ ${Number(bus.conductor.average_rating).toFixed(2)} / 5 (${bus.conductor.rated_review_count} reviews)`
-        : "Not rated"]) {
+                for (const value of [bus.route_name, bus.first_stop, bus.last_stop, bus.vehicle_number, bus.average_rating !== null ? `★ ${bus.average_rating.toFixed(2)} / 5 (${bus.rated_review_count} reviews)` : "Not rated" , 
+        	    bus.driver?.average_rating != null ? `★ ${Number(bus.driver.average_rating).toFixed(2)} / 5 (${bus.driver.rated_review_count} reviews)` : "Not rated",
+        	    bus.conductor?.average_rating != null ? `★ ${Number(bus.conductor.average_rating).toFixed(2)} / 5 (${bus.conductor.rated_review_count} reviews)` : "Not rated"]) {
                     const cell = document.createElement("td");
                     cell.textContent = value ?? "—";
                     row.appendChild(cell);
@@ -99,15 +87,12 @@
                 routesTableBody.appendChild(row);
             }
             routesSection.hidden = false;
-            routesTableWrapper.hidden = false;
-	    
+            routesTableWrapper.hidden = false;	    
             toggleRoutesBtn.hidden = false;
-            refreshRoutesBtn.hidden = false; // NEW
-	
+            refreshRoutesBtn.hidden = false;	
             toggleRoutesBtn.textContent = "Hide Routes";
             toggleRoutesBtn.setAttribute("aria-expanded", "true");
         }
-
         findRoutesBtn.addEventListener("click", async () => {
             findRoutesBtn.disabled = true;
             routesSection.hidden = true;
@@ -135,8 +120,6 @@
                 findRoutesBtn.disabled = false;
             }
         });
-
-
     refreshRoutesBtn.addEventListener("click", async () => {
     refreshRoutesBtn.disabled = true;
     try {
@@ -162,7 +145,6 @@
             toggleRoutesBtn.textContent = visible ? "Hide Routes" : "Show Routes";
             toggleRoutesBtn.setAttribute("aria-expanded", String(visible));
         });
-
         document.getElementById("logoutBtn").addEventListener("click", async () => {
             const response = await fetch("/logout", {method: "POST", credentials: "same-origin"});
             if (response.ok) window.location.href = "/login-page";

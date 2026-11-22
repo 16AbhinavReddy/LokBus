@@ -3,15 +3,11 @@
     padding: 0;
     box-sizing: border-box;
 }
-
 body {
     font-family: Arial, sans-serif;
     background: #f4f7fb;
     color: #222;
 }
-
-/* Navbar */
-
 .navbar {
     display: flex;
     justify-content: space-between;
@@ -22,29 +18,24 @@ body {
 
     box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08);
 }
-
 .logo {
     font-size: 26px;
     font-weight: bold;
     color: #2563eb;
 }
-
 .nav-links {
     display: flex;
     align-items: center;
     gap: 25px;
 }
-
 .nav-links a {
     text-decoration: none;
     color: #444;
     font-weight: 500;
 }
-
 .nav-links a.active {
     color: #2563eb;
 }
-
 #logoutBtn {
     background: #ef4444;
     color: white;
@@ -53,13 +44,9 @@ body {
     border-radius: 6px;
     cursor: pointer;
 }
-
 #logoutBtn:hover {
     background: #dc2626;
 }
-
-/* Profile */
-
 .profile-container {
     display: flex;
     justify-content: center;
@@ -67,7 +54,6 @@ body {
 
     padding: 70px 20px;
 }
-
 .profile-card {
     width: 100%;
     max-width: 600px;
@@ -79,15 +65,11 @@ body {
 
     box-shadow: 0 6px 25px rgba(0, 0, 0, 0.08);
 }
-
-/* Profile header */
-
 .profile-header {
     text-align: center;
     padding-bottom: 30px;
     border-bottom: 1px solid #eee;
 }
-
 .avatar {
     width: 90px;
     height: 90px;
@@ -106,27 +88,20 @@ body {
 
     margin: 0 auto 20px;
 }
-
 .profile-header h1 {
     font-size: 26px;
     margin-bottom: 8px;
 }
-
 .profile-header p {
     color: #777;
 }
-
-/* Details */
-
 .profile-details {
     margin-top: 30px;
 }
-
 .profile-details h2 {
     font-size: 20px;
     margin-bottom: 25px;
 }
-
 .detail-row {
     display: flex;
     justify-content: space-between;
@@ -134,21 +109,17 @@ body {
     padding: 15px 0;
     border-bottom: 1px solid #eee;
 }
-
 .label {
     color: #777;
 }
-
 .detail-row span:last-child {
     font-weight: 500;
 }
-
 .error-message {
     color: #dc2626;
     text-align: center;
     margin-top: 20px;
 }
-
 @media (max-width: 600px) {
     .navbar {
         padding: 16px;

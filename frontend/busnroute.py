@@ -7,21 +7,12 @@ ROUTES_FILE = Path("mumbai_routes.json")
 OBSERVATIONS_FILE = Path("all_bus_observations.json")
 BUSES_FILE = Path("all_buses.json")
 ROUTE_LIMIT = 10
-
 with ROUTES_FILE.open(encoding="utf-8") as f:
     raw_routes = json.load(f)
-
-routes = list({
-    route["route_id"]: route
-    for route in raw_routes
-    if route.get("route_id")
-}.values())[:ROUTE_LIMIT]
-
+routes = list({route["route_id"]: route for route in raw_routes if route.get("route_id")}.values())[:ROUTE_LIMIT]
 observations = []
 successful_routes = []
 failed_routes = []
-
-
 def extract_buses(data, route):
     buses = []
     for internal_id, raw in data.get("routeLiveInfo", {}).items():
@@ -32,35 +23,20 @@ def extract_buses(data, route):
             vehicle_number = str(bus.get("vNo") or "").strip()
             if not vehicle_number:
                 continue
-            buses.append({
-                "vehicle_number": vehicle_number,
-                "route_id": route["route_id"],
-                "route_name": route.get("route_name"),
-                "first_stop": route.get("first_stop"),
-                "last_stop": route.get("last_stop"),
-                "latitude": bus.get("_latitude"),
-                "longitude": bus.get("_longitude"),
-                "timestamp": bus.get("tS"),
-                "internal_id": internal_id,
-            })
+            buses.append({"vehicle_number": vehicle_number,"route_id": route["route_id"],"route_name": route.get("route_name"),"first_stop": route.get("first_stop"),"last_stop": route.get("last_stop"),                "latitude": bus.get("_latitude"),"longitude": bus.get("_longitude"),"timestamp": bus.get("tS"),
+                "internal_id": internal_id,})
         except (ValueError, TypeError):
             continue
     return buses
 
 
 def save_results():
-    OBSERVATIONS_FILE.write_text(
-        json.dumps(observations, indent=2), encoding="utf-8"
-    )
-
+    OBSERVATIONS_FILE.write_text(json.dumps(observations, indent=2), encoding="utf-8")
     bus_index = {}
     for observation in observations:
         number = observation["vehicle_number"].upper()
         if number not in bus_index:
-            bus_index[number] = {
-                "vehicle_number": number,
-                "observations": [],
-            }
+            bus_index[number] = {"vehicle_number": number,"observations": [],}
         bus_index[number]["observations"].append(observation)
 
     for bus in bus_index.values():
@@ -77,7 +53,6 @@ def save_results():
 with sync_playwright() as p:
     browser = p.chromium.launch(headless=False)
     page = browser.new_page()
-
     page.goto("https://chalo.com/app", wait_until="commit", timeout=60000)
     print("Complete phone-number and OTP login in the browser.")
     city_search = page.locator('input[placeholder="Search city"]')
@@ -103,7 +78,6 @@ with sync_playwright() as p:
                 timeout=15000,
             ) as response_info:
                 page.goto(url, wait_until="commit", timeout=15000)
-
             data = response_info.value.json()
             buses = extract_buses(data, route)
             observations.extend(buses)
@@ -123,21 +97,8 @@ with sync_playwright() as p:
         except Exception as e:
             failed_routes.append(route_id)
             print("  Error:", e)
-
         page.wait_for_timeout(1500)
-
     browser.close()
 
 bus_index = save_results()
-
-print("\nCOLLECTION SUMMARY")
-print("----------------------------")
-print("Routes selected:", len(routes))
-print("Routes fetched successfully:", len(successful_routes))
-print("Routes failed:", len(failed_routes))
-print("Total bus observations:", len(observations))
-print("Unique physical buses:", len(bus_index))
-print("Saved:", OBSERVATIONS_FILE)
-print("Saved:", BUSES_FILE)
-print("\nCONTENTS OF all_buses.json:")
 print(json.dumps(bus_index, indent=2))
