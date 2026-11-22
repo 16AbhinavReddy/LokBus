@@ -10,6 +10,11 @@ from argon2 import PasswordHasher
 from argon2.exceptions import VerifyMismatchError, VerificationError
 from dotenv import load_dotenv
 from sqlalchemy.exc import IntegrityError
+from sqlalchemy import text
+import hashlib
+import random
+from datetime import date
+
 
 BASE_DIR = Path(__file__).resolve().parent
 ROUTES_FILE = BASE_DIR / "all_buses.json"
@@ -157,14 +162,14 @@ def generate_routes():
     if "user_id" not in session:
         return jsonify({"error": "Login required"}), 401
 
-    with collection_lock: 
+    with collection_lock:
         if not SOURCE_ROUTES_FILE.is_file():
             return jsonify({"error": "mumbai_routes.json not found in frontend/"}), 404
         if not COLLECTOR_FILE.is_file():
             return jsonify({"error": "busnroute.py not found in frontend/"}), 404
 
         try:
-            
+
             ROUTES_FILE.unlink(missing_ok=True)
             (BASE_DIR / "all_bus_observations.json").unlink(missing_ok=True)
             with COLLECTION_LOG.open("w", encoding="utf-8") as log:
@@ -193,30 +198,123 @@ def generate_routes_status():
     return jsonify({"state": "completed"})
 
 
-@app.get("/api/routes")
+
+def allocate_display_staff(buses, service_date):
+    """Return stable, one-to-one staff mappings for displayed vehicles.
+
+    The existing table is keyed by service_date and vehicle. A fixed key keeps
+    these display mappings stable between days and route fetches.
+    """
+    if not buses:
+        return {}
+    mapping_date = date(2000, 1, 1)
+    db.session.execute(text("SELECT pg_advisory_xact_lock(740699)"))
+    # This table was added after the original database setup. Create it here as
+    # well as in db/07_display_assignments.sql so existing installations can
+    # serve routes without requiring a destructive database reinitialization.
+    db.session.execute(text("""
+        CREATE TABLE IF NOT EXISTS display_staff_assignments (
+            service_date DATE NOT NULL,
+            vehicle_number TEXT NOT NULL REFERENCES buses(vehicle_number),
+            driver_id TEXT NOT NULL REFERENCES drivers(driver_id),
+            conductor_id TEXT NOT NULL REFERENCES conductors(conductor_id),
+            driver_is_fallback BOOLEAN NOT NULL DEFAULT FALSE,
+            conductor_is_fallback BOOLEAN NOT NULL DEFAULT FALSE,
+            PRIMARY KEY (service_date, vehicle_number),
+            UNIQUE (service_date, driver_id),
+            UNIQUE (service_date, conductor_id)
+        )
+    """))
+    for bus in buses:
+        db.session.execute(text("INSERT INTO buses(vehicle_number) VALUES (:v) ON CONFLICT DO NOTHING"), {"v": bus["vehicle_number"]})
+
+    saved_rows = db.session.execute(text("SELECT vehicle_number,driver_id,conductor_id,driver_is_fallback,conductor_is_fallback FROM display_staff_assignments WHERE service_date=:d"), {"d": mapping_date}).mappings().all()
+    assignments = {row["vehicle_number"]: dict(row) for row in saved_rows}
+    used_drivers = {row["driver_id"] for row in saved_rows}
+    used_conductors = {row["conductor_id"] for row in saved_rows}
+    drivers = db.session.execute(text("SELECT driver_id FROM drivers WHERE driver_id NOT LIKE 'SIM_DRIVER_%' ORDER BY random()")).scalars().all()
+    conductors = db.session.execute(text("SELECT conductor_id FROM conductors WHERE conductor_id NOT LIKE 'SIM_CONDUCTOR_%' ORDER BY random()")).scalars().all()
+
+    # Prefer an existing recorded person for this vehicle if still unassigned.
+    history = db.session.execute(text("SELECT DISTINCT ON (vehicle_number) vehicle_number,driver_id,conductor_id FROM service_assignments WHERE driver_id IS NOT NULL OR conductor_id IS NOT NULL ORDER BY vehicle_number,service_date DESC,assignment_id DESC")).mappings().all()
+    history_by_bus = {row["vehicle_number"]: row for row in history}
+    for bus in sorted(buses, key=lambda item: item["vehicle_number"]):
+        vehicle = bus["vehicle_number"]
+        if vehicle in assignments:
+            continue
+        prior = history_by_bus.get(vehicle, {})
+        driver_id = prior.get("driver_id") if prior.get("driver_id") not in used_drivers else None
+        conductor_id = prior.get("conductor_id") if prior.get("conductor_id") not in used_conductors else None
+        if driver_id is None:
+            driver_id = next((candidate for candidate in drivers if candidate not in used_drivers), None)
+        if conductor_id is None:
+            conductor_id = next((candidate for candidate in conductors if candidate not in used_conductors), None)
+        if driver_id is None or conductor_id is None:
+            raise RuntimeError("The database does not have enough unique drivers and conductors for the active buses.")
+        used_drivers.add(driver_id)
+        used_conductors.add(conductor_id)
+        row = {"vehicle_number": vehicle, "driver_id": driver_id, "conductor_id": conductor_id,
+               "driver_is_fallback": False, "conductor_is_fallback": False}
+        db.session.execute(text("INSERT INTO display_staff_assignments(service_date,vehicle_number,driver_id,conductor_id,driver_is_fallback,conductor_is_fallback) VALUES (:d,:vehicle_number,:driver_id,:conductor_id,FALSE,FALSE)"), {"d": mapping_date, **row})
+        assignments[vehicle] = row
+    db.session.commit()
+    return assignments
+
+@app.route("/api/routes", methods=["GET"])
 def get_routes():
     if "user_id" not in session:
         return jsonify({"error": "Login required"}), 401
     try:
         with ROUTES_FILE.open("r", encoding="utf-8") as file:
             data = json.load(file)
+        rating_rows = db.session.execute(text("""SELECT vehicle_number, average_rating, rated_review_count
+            FROM bus_average_ratings""")).mappings().all()
+        ratings = {
+            str(row["vehicle_number"]).strip().upper(): {
+                "average_rating": (
+                    float(row["average_rating"])
+                    if row["average_rating"] is not None
+                    else None
+                ),
+                "rated_review_count": row["rated_review_count"]
+            }
+            for row in rating_rows        }
         buses = []
         for vehicle_number, vehicle_data in data.items():
             observations = vehicle_data.get("observations", [])
             if not observations:
                 continue
-            latest = max(observations, key=lambda obs: obs.get("timestamp") or 0)
+            latest = max(observations,key=lambda obs: obs.get("timestamp") or 0)
+            number = str(vehicle_data.get("vehicle_number", vehicle_number)).strip().upper()
+            rating_info = ratings.get(number, {"average_rating": None,"rated_review_count": 0})
             buses.append({
                 "route_name": latest.get("route_name"),
                 "first_stop": latest.get("first_stop"),
                 "last_stop": latest.get("last_stop"),
-                "vehicle_number": vehicle_data.get("vehicle_number", vehicle_number),
+                "vehicle_number": number,
+                "average_rating": rating_info["average_rating"],
+                "rated_review_count": rating_info["rated_review_count"]
             })
+        assignments = allocate_display_staff(buses, date.today())
+        driver_rows = db.session.execute(text("""SELECT driver_id, driver_name, average_rating, rated_review_count FROM driver_average_ratings""")).mappings().all()
+        driver_ratings = {row["driver_id"]: dict(row) for row in driver_rows}
+        conductor_rows = db.session.execute(text("""SELECT conductor_id, conductor_name, average_rating, rated_review_count FROM conductor_average_ratings""")).mappings().all()
+        conductor_ratings = {row["conductor_id"]: dict(row) for row in conductor_rows}
+        for bus in buses:
+            assignment = assignments.get(bus["vehicle_number"], {})
+            driver = driver_ratings.get(assignment.get("driver_id"), {})
+            conductor = conductor_ratings.get(assignment.get("conductor_id"), {})
+            bus["driver"] = {"driver_id": assignment.get("driver_id"),"driver_name": driver.get("driver_name"),"average_rating": (float(driver["average_rating"]) if driver.get("average_rating") is not None else None),
+            "rated_review_count": driver.get("rated_review_count", 0),"is_fallback": assignment.get("driver_is_fallback", False)}
+            bus["conductor"] = {"conductor_id": assignment.get("conductor_id"),"conductor_name": conductor.get("conductor_name"),"average_rating": (float(conductor["average_rating"]) if conductor.get("average_rating") is not None else None
+            ),"rated_review_count": conductor.get("rated_review_count", 0),"is_fallback": assignment.get("conductor_is_fallback", False)}
         return jsonify(buses)
-    except (OSError, ValueError, TypeError, AttributeError):
-        app.logger.exception("Unable to load routes")
-        return jsonify({"error": "Unable to load routes"}), 500
+    except (OSError, ValueError, TypeError, AttributeError, RuntimeError):
+         db.session.rollback()
+         app.logger.exception("Unable to load routes")
+         return jsonify({"error": "Unable to load routes"}), 500
 
 
-if __name__ == "__main__":    
+
+if __name__ == "__main__":
     app.run(debug=True, use_reloader=False)

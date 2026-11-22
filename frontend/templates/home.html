@@ -37,6 +37,7 @@
         <section id="routesSection" hidden>
             <h2>Mumbai BEST Buses</h2>
             <button id="toggleRoutesBtn" type="button" aria-expanded="true">Hide Routes</button>
+	    <button id="refreshRoutesBtn" hidden>Refresh Routes</button>
             <div id="routesTableWrapper" style="overflow-x:auto;">
                 <table class="routes-table">
                     <thead>
@@ -45,6 +46,9 @@
                             <th>Starting Point</th>
                             <th>Ending Point</th>
                             <th>Bus Number</th>
+			                <th>Bus Rating</th>
+                            <th>Driver Rating</th>
+                            <th>Conductor Rating</th>
                         </tr>
                     </thead>
                     <tbody id="routesTableBody"></tbody>
@@ -60,6 +64,7 @@
         const routesTableBody = document.getElementById("routesTableBody");
         const routesTableWrapper = document.getElementById("routesTableWrapper");
         const toggleRoutesBtn = document.getElementById("toggleRoutesBtn");
+	    const refreshRoutesBtn = document.getElementById("refreshRoutesBtn");
 
         const sleep = (ms) => new Promise(resolve => setTimeout(resolve, ms));
 
@@ -78,7 +83,15 @@
             routesTableBody.replaceChildren();
             for (const bus of buses) {
                 const row = document.createElement("tr");
-                for (const value of [bus.route_name, bus.first_stop, bus.last_stop, bus.vehicle_number]) {
+                for (const value of [bus.route_name, bus.first_stop, bus.last_stop, bus.vehicle_number, bus.average_rating !== null
+        ? `★ ${bus.average_rating.toFixed(2)} / 5 (${bus.rated_review_count} reviews)`
+        : "Not rated" , 
+        bus.driver?.average_rating != null
+        ? `★ ${Number(bus.driver.average_rating).toFixed(2)} / 5 (${bus.driver.rated_review_count} reviews)`
+        : "Not rated",
+        bus.conductor?.average_rating != null
+        ? `★ ${Number(bus.conductor.average_rating).toFixed(2)} / 5 (${bus.conductor.rated_review_count} reviews)`
+        : "Not rated"]) {
                     const cell = document.createElement("td");
                     cell.textContent = value ?? "—";
                     row.appendChild(cell);
@@ -87,6 +100,10 @@
             }
             routesSection.hidden = false;
             routesTableWrapper.hidden = false;
+	    
+            toggleRoutesBtn.hidden = false;
+            refreshRoutesBtn.hidden = false; // NEW
+	
             toggleRoutesBtn.textContent = "Hide Routes";
             toggleRoutesBtn.setAttribute("aria-expanded", "true");
         }
@@ -119,6 +136,26 @@
             }
         });
 
+
+    refreshRoutesBtn.addEventListener("click", async () => {
+    refreshRoutesBtn.disabled = true;
+    try {
+        const response = await fetch("/api/routes", {
+            cache: "no-store"
+        });
+        if (!response.ok) {
+            throw new Error("Unable to fetch routes");
+        }
+        const data = await response.json();
+        renderBuses(data.buses ?? data);
+    } catch (error) {
+        console.error(error);
+        alert("Failed to refresh routes.");
+    } finally {
+        refreshRoutesBtn.disabled = false;
+        refreshRoutesBtn.textContent = "Refresh Routes";
+    }
+});
         toggleRoutesBtn.addEventListener("click", () => {
             routesTableWrapper.hidden = !routesTableWrapper.hidden;
             const visible = !routesTableWrapper.hidden;
