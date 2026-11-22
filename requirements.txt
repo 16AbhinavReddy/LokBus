@@ -4,3 +4,11 @@ bitsandbytes>=0.43.0
 pandas>=2.0
 numpy>=1.24
 playwright
+flask
+flask-sqlalchemy
+psycopg2-binary
+argon2-cffi
+python-dotenv
+joblib
+scikit-learn
+
