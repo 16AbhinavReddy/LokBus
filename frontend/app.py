@@ -263,7 +263,8 @@ def allocate_display_staff(buses, service_date):
             if available_drivers:
                 assignment["driver_id"] = available_drivers.pop()
             else:                
-                token = hashlib.sha256(f"{service_date}:{number}".encode()).hexdigest()[:24] simulated_id = f"SIM_DRIVER_{token}"
+                token = hashlib.sha256(f"{service_date}:{number}".encode()).hexdigest()[:24] 
+                simulated_id = f"SIM_DRIVER_{token}"
                 db.session.execute(text("""INSERT INTO drivers (driver_id, driver_name) VALUES (:driver_id, :driver_name) ON CONFLICT (driver_id) DO NOTHING"""),{
                         "driver_id": simulated_id,
                         "driver_name": f"Simulated Driver ({number})"
